@@ -16,11 +16,14 @@
   <div class="sessions">
     <article>
       <!-- cant access session title -->
-      {{dump(stagiaire.sessions)}}
-      <h4>Test</h4>
+      {% for session in stagiaire.sessions %}
+        <p>Du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }} au {{ session.dateFin | format_datetime('long', 'none', locale='fr')}}</p>
+        <h4>{{ session.titre}} </h4>
+      {% endfor %}
     </article>
   </div>
  </article>
+ <hr>
  {% endfor %}
  <a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a>
 </main>
