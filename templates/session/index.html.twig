@@ -3,5 +3,32 @@
 {% block title %}Liste des Sessions{% endblock %}
 
 {% block body %}
+<table>
+  <thead>
+    <th>Intitulé de la session</th>
+    <th>Début</th>
+    <th>Fin</th>
+    <th>Places théoriques</th>
+    <th>Places réservées</th>
+    <th>Places restantes</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% for session in sessions %}
+        <tr>
+          <td>{{session.titre}}</td>
+          <td>{{session.dateDebut | date('d/m/Y')}}</td>
+          <td>{{session.dateFin | date('d/m/Y') }}</td>
+          <td>{{session.nbPlaces}}</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>        
+    {% endfor %}
+    
+  </tbody>
+</table>
+    
+
  <a href="{{ path('add_session') }}">Ajouter une session</a>
 {% endblock %}
