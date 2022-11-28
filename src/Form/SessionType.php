@@ -11,7 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class SessionType extends AbstractType
 {
@@ -26,9 +25,11 @@ class SessionType extends AbstractType
       ->add('date_fin',DateType::class, [
         'widget' => 'single_text'
       ])
-      ->add('stagiaires',CollectionType::class,[
-        'entry_type' => Stagiaire::class,
-        // 'choice_label' => 'raisonSociale',
+      ->add('stagiaires',EntityType::class,[
+        'class' => Stagiaire::class,
+        // adding mapped to false because setStagiaires method don't exists in Session Entity
+        'mapped' => false,
+        'multiple' => true
       ])
       ->add('submit',SubmitType::class, [
         'attr' => ['class' => 'btn']
