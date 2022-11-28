@@ -6,11 +6,11 @@ use App\Entity\Session;
 use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SessionType extends AbstractType
 {
@@ -18,18 +18,12 @@ class SessionType extends AbstractType
   {
     $builder
       ->add('titre',TextType::class)
-      ->add('nb_places')
+      ->add('nb_places', IntegerType::class)
       ->add('date_debut',DateType::class, [
         'widget' => 'single_text'
       ])
       ->add('date_fin',DateType::class, [
         'widget' => 'single_text'
-      ])
-      ->add('stagiaires',EntityType::class,[
-        'class' => Stagiaire::class,
-        // adding mapped to false because setStagiaires method don't exists in Session Entity
-        'mapped' => false,
-        'multiple' => true
       ])
       ->add('submit',SubmitType::class, [
         'attr' => ['class' => 'btn']

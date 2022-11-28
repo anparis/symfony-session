@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail de la session{% endblock %}
+
+{% block body %}
+<main>
+  <p>A partir du {{date}}</p>
+  <h1>{{session.titre}}</h1>
+
+  <div class="modules-list">
+    <article>
+      {% for programme in programmes %}
+      <h4>{{ programme.module.categorie }}</h4>
+      <hr>
+      <ul>
+        <li>{{ programme.module.nom }}</li>
+      </ul>
+      <button>Ajouter un module</button>
+      {% endfor %}
+    </article>
+  </div>
+</main>
+{% endblock %}

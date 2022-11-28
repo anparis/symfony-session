@@ -52,4 +52,17 @@ class SessionController extends AbstractController
         'edit' => $session->getId()
       ]);
     }
+
+    #[Route('/session/{id}', name: 'show_session')]
+    public function show(Session $session): Response
+    {
+      $dateformat = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::LONG, \IntlDateFormatter::LONG);
+      $dateformat->setPattern('d MMMM Y');
+
+      return $this->render('session/show.html.twig', [
+        'session' => $session,
+        'date' => $dateformat->format($session->getDateDebut()),
+        'programmes' => $session->getProgrammes()
+      ]);
+    }
 }

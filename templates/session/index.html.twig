@@ -16,7 +16,7 @@
   <tbody>
     {% for session in sessions %}
         <tr>
-          <td>{{session.titre}}</td>
+          <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
           <td>{{session.dateDebut | date('d/m/Y')}}</td>
           <td>{{session.dateFin | date('d/m/Y') }}</td>
           <td>{{session.nbPlaces}}</td>
@@ -28,7 +28,6 @@
     
   </tbody>
 </table>
-    
 
  <a href="{{ path('add_session') }}">Ajouter une session</a>
 {% endblock %}
