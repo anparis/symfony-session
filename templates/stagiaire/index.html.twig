@@ -3,6 +3,26 @@
 {% block title %}Liste des Stagiaires{% endblock %}
 
 {% block body %}
+<main>
+ {% for stagiaire in stagiaires %}
+ <article>
+  <h4>{{stagiaire}}</h4>
+  <p>mail: {{stagiaire.email}}</p>
+  <p>tel: {{stagiaire.tel}}</p>
+  <p>ville: {{stagiaire.ville}}</p>
+  <p>date de naissance: {{stagiaire.datenaissance | date('d/m/Y')}}</p>
+  <p>sexe: {{stagiaire.sexe}}</p>
+
+  <div class="sessions">
+    <article>
+      <!-- cant access session title -->
+      {{dump(stagiaire.sessions)}}
+      <h4>Test</h4>
+    </article>
+  </div>
+ </article>
+ {% endfor %}
  <a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a>
+</main>
 {% endblock %}
 
