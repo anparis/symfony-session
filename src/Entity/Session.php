@@ -31,6 +31,9 @@ class Session
     #[ORM\ManyToMany(targetEntity: Stagiaire::class, inversedBy: 'sessions')]
     private Collection $stagiaires;
 
+    #[ORM\Column(length: 100)]
+    private ?string $titre = null;
+
     public function __construct()
     {
         $this->programmes = new ArrayCollection();
@@ -128,6 +131,18 @@ class Session
     public function removeStagiaire(Stagiaire $stagiaire): self
     {
         $this->stagiaires->removeElement($stagiaire);
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
 
         return $this;
     }

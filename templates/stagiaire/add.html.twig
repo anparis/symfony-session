@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire des Stagiaires{% endblock %}
+
+{% block body %}
+{% if edit %}
+<h1> Edit Stagiaire </h1>
+{%else%}
+<h1> Ajout Stagiaire </h1>
+{%endif%}
+
+{{ form_start(formStagiaire) }}
+  {{ form_row(formStagiaire.tel) }}
+  {{ form_row(formStagiaire.email) }}
+  {{ form_row(formStagiaire.date_naissance) }}
+  {{ form_row(formStagiaire.ville) }}
+  {{ form_row(formStagiaire.sexe) }}
+  {{ form_row(formStagiaire.nom) }}
+  {{ form_row(formStagiaire.prenom) }}
+{{ form_end(formStagiaire) }}
+{% endblock %}

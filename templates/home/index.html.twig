@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+
+  <nav>
+    <a href="{{ path('app_home')}}">G-sessions.DevCenter</a>
+    <button>Inscription</button>
+  </nav>
+  <main>
+    <article>
+      <h1>Bienvenue sur le gestionnaire des sessions ! ✅</h1>
+
+      <p>G-Sessions est l’endroit où sont gérés toutes les sessions de formations et des stagiaires inscrits au centre. Il est accessible à l’administration et aux formateurs du DevCenter.</p>
+
+      <button>Connexion au DevCenter</button>
+    </article>
+  </main> 
+  <footer>
+    <a href="#">À propos</a>
+    <a href="#">Réglement</a>
+  </footer>
+</div>
+{% endblock %}
