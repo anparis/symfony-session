@@ -17,7 +17,18 @@
       <button>Ajouter un module</button>
     </article>
     {% endfor %}
+  </div>
 
+  <br>
+  <div class="stagiaires">
+    <article>
+      <h4>Stagiaires inscrits</h4>
+      {% for stagiaire in session.stagiaires %}
+      <ul>
+        <li>{{stagiaire}}</li>
+      </ul>
+      {% endfor %}
+    </article>
   </div>
 </main>
 {% endblock %}
