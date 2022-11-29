@@ -17,17 +17,21 @@
   </thead>
   <tbody>
     {% for session in sessionsCurrent %}
-        <tr>
-          <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
-          <td>{{session.dateDebut | date('d/m/Y')}}</td>
-          <td>{{session.dateFin | date('d/m/Y') }}</td>
-          <td>{{session.nbPlaces}}</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>        
+    <tr>
+      <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+      <td>{{session.dateDebut | date('d/m/Y')}}</td>
+      <td>{{session.dateFin | date('d/m/Y') }}</td>
+      <td>{{session.nbPlaces}}</td>
+      {% for stagiaire in session.stagiaires %}
+        {% if loop.last %}
+        <td>{{ loop.index }}</td>
+        <td>{{ session.nbPlaces - loop.index }}</td>
+        {% endif %}
+      {% endfor %}
+      <td>Edit</td>
+    </tr>
     {% endfor %}
-    
+
   </tbody>
 </table>
 {% endif %}
@@ -46,15 +50,19 @@
   </thead>
   <tbody>
     {% for session in sessionsPast %}
-        <tr>
-          <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
-          <td>{{session.dateDebut | date('d/m/Y')}}</td>
-          <td>{{session.dateFin | date('d/m/Y') }}</td>
-          <td>{{session.nbPlaces}}</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>        
+    <tr>
+      <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+      <td>{{session.dateDebut | date('d/m/Y')}}</td>
+      <td>{{session.dateFin | date('d/m/Y') }}</td>
+      <td>{{session.nbPlaces}}</td>
+      {% for stagiaire in session.stagiaires %}
+        {% if loop.last %}
+        <td>{{ loop.index }}</td>
+        <td>{{ session.nbPlaces - loop.index }}</td>
+        {% endif %}
+      {% endfor %}
+      <td>Edit</td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>
@@ -74,20 +82,24 @@
   </thead>
   <tbody>
     {% for session in sessionsFuture %}
-        <tr>
-          <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
-          <td>{{session.dateDebut | date('d/m/Y')}}</td>
-          <td>{{session.dateFin | date('d/m/Y') }}</td>
-          <td>{{session.nbPlaces}}</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>        
+    <tr>
+      <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+      <td>{{session.dateDebut | date('d/m/Y')}}</td>
+      <td>{{session.dateFin | date('d/m/Y') }}</td>
+      <td>{{session.nbPlaces}}</td>
+      {% for stagiaire in session.stagiaires %}
+        {% if loop.last %}
+        <td>{{ loop.index }}</td>
+        <td>{{ session.nbPlaces - loop.index }}</td>
+        {% endif %}
+      {% endfor %}
+      <td>Edit</td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>
 {% endif %}
 
 <br>
- <a href="{{ path('add_session') }}">Ajouter une session</a>
+<a href="{{ path('add_session') }}">Ajouter une session</a>
 {% endblock %}

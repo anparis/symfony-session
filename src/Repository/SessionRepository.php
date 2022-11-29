@@ -40,7 +40,7 @@ class SessionRepository extends ServiceEntityRepository
     }
   }
 
-  
+
   // Return sessions that are older than current date
   public function sessionsPast()
   {
