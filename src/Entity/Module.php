@@ -18,11 +18,12 @@ class Module
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $Categorie = null;
-
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Programme::class, orphanRemoval: true)]
     private Collection $programmes;
+
+    #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
@@ -42,18 +43,6 @@ class Module
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(string $Categorie): self
-    {
-        $this->Categorie = $Categorie;
 
         return $this;
     }
@@ -84,6 +73,18 @@ class Module
                 $programme->setModule(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

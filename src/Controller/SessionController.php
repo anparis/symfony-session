@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Session;
 use App\Form\SessionType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -54,15 +55,11 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session): Response
+    public function show(Session $session, ManagerRegistry $doctrine): Response
     {
-      $dateformat = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::LONG, \IntlDateFormatter::LONG);
-      $dateformat->setPattern('d MMMM Y');
 
       return $this->render('session/show.html.twig', [
         'session' => $session,
-        'date' => $dateformat->format($session->getDateDebut()),
-        'programmes' => $session->getProgrammes()
       ]);
     }
 }

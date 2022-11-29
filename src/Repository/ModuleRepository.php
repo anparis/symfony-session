@@ -39,6 +39,17 @@ class ModuleRepository extends ServiceEntityRepository
         }
     }
 
+    public function groupByC()
+    {
+      $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT categorie
+            FROM App\Entity\Module
+            GROUP BY categorie ASC'
+        );
+    }
+
 //    /**
 //     * @return Module[] Returns an array of Module objects
 //     */
