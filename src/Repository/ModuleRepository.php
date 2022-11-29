@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Module;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Module>
@@ -39,15 +40,18 @@ class ModuleRepository extends ServiceEntityRepository
         }
     }
 
-    public function groupByC()
+    public function groupBy()
     {
       $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery(
-            'SELECT categorie
-            FROM App\Entity\Module
-            GROUP BY categorie ASC'
+      $query = $entityManager->createQuery(
+          'SELECT n
+          FROM App\Entity\Module n
+          ORDER BY n.nom ASC'
         );
+
+
+        return $query->getResult();
     }
 
 //    /**

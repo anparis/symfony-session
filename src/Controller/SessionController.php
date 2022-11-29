@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Module;
 use App\Entity\Session;
+use App\Entity\Categorie;
 use App\Form\SessionType;
+use Doctrine\ORM\Mapping\OrderBy;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,9 +59,12 @@ class SessionController extends AbstractController
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session, ManagerRegistry $doctrine): Response
     {
+      // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
+      $modules = $doctrine->getRepository(Module::class)->groupBy();
 
       return $this->render('session/show.html.twig', [
         'session' => $session,
+        'modules' => $modules,
       ]);
     }
 }

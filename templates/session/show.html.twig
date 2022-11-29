@@ -6,19 +6,18 @@
 <main>
   <p>A partir du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }}</p>
   <h1>{{session.titre}}</h1>
-
   <div class="modules-list">
+    {% for programme in session.programmes %}
     <article>
-      {% for programme in session.programmes %}
-      
       <h4>{{ programme.module.categorie }}</h4>
       <hr>
       <ul>
             <li>{{ programme.module.nom }}</li>
       </ul>
       <button>Ajouter un module</button>
-      {% endfor %}
     </article>
+    {% endfor %}
+
   </div>
 </main>
 {% endblock %}
