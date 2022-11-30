@@ -69,10 +69,11 @@ class SessionController extends AbstractController
     {
       // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
       $modules = $doctrine->getRepository(Module::class)->groupBy();
+      $categories = $doctrine->getRepository(Categorie::class)->findAll();
 
       return $this->render('session/show.html.twig', [
         'session' => $session,
-        'modules' => $modules,
+        'categories' => $categories,
       ]);
     }
 }
