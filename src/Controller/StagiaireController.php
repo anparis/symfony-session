@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -50,6 +51,16 @@ class StagiaireController extends AbstractController
     return $this->render('stagiaire/add.html.twig', [
       'formStagiaire' => $form->createView(),
       'edit' => $stagiaire->getId()
+    ]);
+  }
+
+  #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
+  public function show(Stagiaire $stagiaire, ManagerRegistry $doctrine): Response
+  {
+    // $sessions = $doctrine->getRepository(Session::class)->findAll();
+    return $this->render('stagiaire/show.html.twig', [
+      'stagiaire' => $stagiaire,
+      // 'sessions' => $sessions
     ]);
   }
 }

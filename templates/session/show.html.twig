@@ -38,7 +38,7 @@
       <h4>Stagiaires inscrits</h4>
       {% for stagiaire in session.stagiaires %}
       <ul>
-        <li>{{stagiaire}}</li><button class="btn-delete">supprimer</button>
+        <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li><button class="btn-delete">supprimer</button>
       </ul>
       {% endfor %}
     </article>

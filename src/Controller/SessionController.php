@@ -81,7 +81,7 @@ class SessionController extends AbstractController
     public function show(Session $session, ManagerRegistry $doctrine): Response
     {
       // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
-      $modules = $doctrine->getRepository(Module::class)->groupBy();
+      // $modules = $doctrine->getRepository(Module::class)->groupBy();
       $categories = $doctrine->getRepository(Categorie::class)->findAll();
 
       return $this->render('session/show.html.twig', [
