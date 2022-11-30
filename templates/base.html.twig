@@ -19,10 +19,15 @@
 <body>
   <div class="wrapper">
     <nav>
-      <a href="{{ path('app_home')}}">G-sessions.DevCenter</a>
+      {% if app.user %}
+      <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
       <a href="{{ path('app_session') }} ">Sessions</a>
       <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
-      <button>Inscription</button>
+      <button><a href="{{ path('app_logout') }}">Logout</a></button>
+      {% else %}
+      <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
+      <button><a href="{{ path('app_register') }}">Inscription</a></button>
+      {% endif %}
     </nav>
     <br>
     {% block body %}
