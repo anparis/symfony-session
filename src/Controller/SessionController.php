@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Categorie;
+use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use Doctrine\ORM\Mapping\OrderBy;
 use Doctrine\Persistence\ManagerRegistry;
@@ -61,6 +62,18 @@ class SessionController extends AbstractController
       return $this->render('session/add.html.twig',[
         'formSession' => $form->createView(),
         'edit' => $session->getId()
+      ]);
+    }
+
+    #[Route('/session/{id}/stagiaire', name: 'del_stagiaire')]
+    public function del(Stagiaire $stagiaire): Response
+    {
+      // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
+      $delstagaire = $stagiaire->getRepository(Stagiaire::class)->remove();
+
+      return $this->render('session/show.html.twig', [
+        'session' => $session,
+        'categories' => $categories,
       ]);
     }
 

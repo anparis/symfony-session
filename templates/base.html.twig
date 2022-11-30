@@ -20,10 +20,11 @@
   <div class="wrapper">
     <nav>
       {% if app.user %}
-      <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
-      <a href="{{ path('app_session') }} ">Sessions</a>
+      <a href="{{ path('app_session') }}">G-sessions.DevCenter</a>
       <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
+      <a href="{{ path('app_user') }} ">Formateurs</a>
       <button><a href="{{ path('app_logout') }}">Logout</a></button>
+      <p>{{ app.user.email }}</p>
       {% else %}
       <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
       <button><a href="{{ path('app_register') }}">Inscription</a></button>
