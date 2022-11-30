@@ -11,7 +11,7 @@
     <div class="modules-list">
       {% set break = false %}
       {% for categorie in categories %}
-      <!-- {% if not break %} -->
+      {% if not break %}
       <article>
         <h4>{{categorie}}</h4>
         <hr>
@@ -23,7 +23,7 @@
           {% endif %}
         {% endfor %}
         </article>
-        <!-- {% endif %} -->
+        {% endif %}
       {% endfor %}
     </div>
   {% else %}
