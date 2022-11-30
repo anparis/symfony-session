@@ -22,16 +22,20 @@
       <td>{{session.dateDebut | date('d/m/Y')}}</td>
       <td>{{session.dateFin | date('d/m/Y') }}</td>
       <td>{{session.nbPlaces}}</td>
+      {% if session.stagiaires is not empty %}
       {% for stagiaire in session.stagiaires %}
         {% if loop.last %}
         <td>{{ loop.index }}</td>
         <td>{{ session.nbPlaces - loop.index }}</td>
         {% endif %}
       {% endfor %}
+      {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+      {% endif %}
       <td>Edit</td>
     </tr>
     {% endfor %}
-
   </tbody>
 </table>
 {% endif %}
@@ -55,12 +59,17 @@
       <td>{{session.dateDebut | date('d/m/Y')}}</td>
       <td>{{session.dateFin | date('d/m/Y') }}</td>
       <td>{{session.nbPlaces}}</td>
+      {% if session.stagiaires is not empty %}
       {% for stagiaire in session.stagiaires %}
         {% if loop.last %}
         <td>{{ loop.index }}</td>
         <td>{{ session.nbPlaces - loop.index }}</td>
         {% endif %}
       {% endfor %}
+      {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+      {% endif %}
       <td>Edit</td>
     </tr>
     {% endfor %}
@@ -87,12 +96,18 @@
       <td>{{session.dateDebut | date('d/m/Y')}}</td>
       <td>{{session.dateFin | date('d/m/Y') }}</td>
       <td>{{session.nbPlaces}}</td>
+      {% if session.stagiaires is not empty %}
       {% for stagiaire in session.stagiaires %}
         {% if loop.last %}
         <td>{{ loop.index }}</td>
         <td>{{ session.nbPlaces - loop.index }}</td>
         {% endif %}
       {% endfor %}
+      {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+      {% endif %}
+
       <td>Edit</td>
     </tr>
     {% endfor %}
