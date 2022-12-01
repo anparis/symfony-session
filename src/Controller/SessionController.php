@@ -7,8 +7,10 @@ use App\Entity\Session;
 use App\Entity\Categorie;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
+use App\Repository\SessionRepository;
 use Doctrine\ORM\Mapping\OrderBy;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,15 +91,25 @@ class SessionController extends AbstractController
       return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
-    #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session, ManagerRegistry $doctrine): Response
+    #[Route('/session/{id}/addStagiaire', name: 'add_stagiaire')]
+    public function addStagiaire(Stagiaire $stagiaire,Session $session,ManagerRegistry $doctrine): Response
     {
-      // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
-      // $modules = $doctrine->getRepository(Module::class)->groupBy();
+      $session->addStagiaire($stagiaire);
+      $entityManager = $doctrine->getManager();
+      $entityManager->persist($session);
+      $entityManager->flush();
+      return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
+    }
+
+    #[Route('/session/{id}', name: 'show_session')]
+    public function show(Session $session, ManagerRegistry $doctrine, SessionRepository $sr): Response
+    {
       $categories = $doctrine->getRepository(Categorie::class)->findAll();
+      $nonRegistered = $sr->findNonRegistered($session->getId());
 
       return $this->render('session/show.html.twig', [
         'session' => $session,
+        'nonRegistered' => $nonRegistered,
         'categories' => $categories,
       ]);
     }

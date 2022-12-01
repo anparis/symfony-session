@@ -33,13 +33,25 @@
 
 
   <br>
-  <div class="stagiaires">
+  <div class="stagiaires-registered">
     <article>
       <h4>Stagiaires inscrits</h4>
       {% for stagiaire in session.stagiaires %}
       <ul>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
         <button class="btn-delete"><a href="{{path('del_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">supprimer</a></button>
+      </ul>
+      {% endfor %}
+    </article>
+    <button class="btn-delete">inscrire un stagiaire</button>
+  </div>
+  <div class="stagiaires-non-registered">
+    <article>
+      <h4>Stagiaires non inscrits</h4>
+      {% for stagiaire in nonRegistered %}
+      <ul>
+        <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
+        <button class="btn-delete"><a href="{{path('add_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">ajouter</a></button>
       </ul>
       {% endfor %}
     </article>
