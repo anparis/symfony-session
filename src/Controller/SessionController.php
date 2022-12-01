@@ -103,15 +103,29 @@ class SessionController extends AbstractController
       return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
+    // #[Route('/session/{idSe}/{idMo}/addModule', name: 'add_session_module')]
+    // #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
+    // #[ParamConverter('module', options: ['mapping' => ['idMo' => 'id']])]
+    // public function addModule(Module $stagiaire,Session $session,ManagerRegistry $doctrine): Response
+    // {
+    //   $session->addProgramme($stagiaire);
+    //   $entityManager = $doctrine->getManager();
+    //   $entityManager->persist($session);
+    //   $entityManager->flush();
+    //   return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
+    // }
+
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session, ManagerRegistry $doctrine, SessionRepository $sr): Response
     {
       $categories = $doctrine->getRepository(Categorie::class)->findAll();
       $nonRegistered = $sr->findNonRegistered($session->getId());
-
+      $nonProgrammes = $sr->findNonProgrammes($session->getId());
+      
       return $this->render('session/show.html.twig', [
         'session' => $session,
         'nonRegistered' => $nonRegistered,
+        'nonProgrammes' => $nonProgrammes,
         'categories' => $categories,
       ]);
     }

@@ -74,7 +74,7 @@
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
       {% endif %}
-      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a></td>
+      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a>/<a href="{{path('del_session', {'id':session.id})}}">Supprimer</a></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -112,7 +112,7 @@
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
       {% endif %}
-      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a></td>
+      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a>/<a href="{{path('del_session', {'id':session.id})}}">Supprimer</a></td>
     </tr>
     {% endfor %}
   </tbody>

@@ -18,7 +18,7 @@
         {% for programme in session.programmes %}
           {% if categorie == programme.module.categorie %}
             <ul>
-                  <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
+              <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
             </ul>
           {% endif %}
         {% endfor %}
@@ -29,7 +29,12 @@
   {% else %}
     <p>La session ne possède pas de modules.</p>
   {% endif %}
-  <button>Ajouter un module</button>
+  {% for programme in nonProgrammes %}
+  <ul>
+    <li>{{programme.module.nom}}</li>
+    <button>Ajouter un module</button>
+  </ul>
+  {% endfor %}
 
 
   <br>
