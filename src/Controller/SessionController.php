@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class SessionController extends AbstractController
 {
@@ -74,6 +75,18 @@ class SessionController extends AbstractController
       $entityManager->flush();
 
       return $this->redirectToRoute('app_session');
+    }
+
+    #[Route('/session/{idSe}/{idSt}/delStagiaire', name: 'del_stagiaire')]
+    #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
+    #[ParamConverter('stagiaire', options: ['mapping' => ['idSt' => 'id']])]
+    public function delStagiaire(Stagiaire $stagiaire,Session $session,ManagerRegistry $doctrine): Response
+    {
+      $session->removeStagiaire($stagiaire);
+      $entityManager = $doctrine->getManager();
+      $entityManager->persist($session);
+      $entityManager->flush();
+      return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
     #[Route('/session/{id}', name: 'show_session')]
