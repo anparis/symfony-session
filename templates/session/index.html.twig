@@ -3,8 +3,9 @@
 {% block title %}Liste des Sessions{% endblock %}
 
 {% block body %}
+<main>
 {% if sessionsCurrent %}
-<h3>Sessions passés</h3>
+<h3>Sessions courantes</h3>
 <table>
   <thead>
     <th>Intitulé de la session</th>
@@ -33,15 +34,18 @@
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
       {% endif %}
-      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a></td>
+      <td><a href="{{path('edit_session', {'id':session.id})}}">Edit</a>/<a href="{{path('del_session', {'id':session.id})}}">Supprimer</a></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+{% else %}
+<p>Aucunes sessions en cours</p>
 {% endif %}
 
+
 {% if sessionsPast %}
-<h3>Sessions passés</h3>
+<h3>Sessions passées</h3>
 <table>
   <thead>
     <th>Intitulé de la session</th>
@@ -77,7 +81,8 @@
 </table>
 {% endif %}
 
-{% if sessionsCurrent %}
+
+{% if sessionsFuture %}
 <h3>Sessions à venir</h3>
 <table>
   <thead>
@@ -116,4 +121,5 @@
 
 <br>
 <a href="{{ path('add_session') }}">Ajouter une session</a>
+</main>
 {% endblock %}

@@ -1,0 +1,28 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+
+nav{
+  background-color: hsla(274, 64%, 86%, 0.329);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 20px;
+}
+
+main{
+  padding: 0 40px;
+}
+
+.modules-list{
+  background-color: hsl(34, 74%, 82%);
+}
+
+.sessions-list{
+  background-color: hsl(34, 74%, 82%);
+
+}

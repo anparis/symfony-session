@@ -18,7 +18,7 @@
         {% for programme in session.programmes %}
           {% if categorie == programme.module.categorie %}
             <ul>
-                  <li>{{ programme.module }}</li>
+                  <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
             </ul>
           {% endif %}
         {% endfor %}

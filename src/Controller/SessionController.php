@@ -65,16 +65,15 @@ class SessionController extends AbstractController
       ]);
     }
 
-    #[Route('/session/{id}/stagiaire', name: 'del_stagiaire')]
-    public function del(Stagiaire $stagiaire): Response
+    #[Route('/session/{id}/delete', name: 'del_session')]
+    public function delSession(Session $session, ManagerRegistry $doctrine): Response
     {
-      // $modules = $doctrine->getRepository(Module::class)->findBy([],["categorie" => 'ASC']);
-      $delstagaire = $stagiaire->getRepository(Stagiaire::class)->remove();
+      // Manager de doctrine, permet d'acceder au persist et au flush
+      $entityManager = $doctrine->getManager();
+      $entityManager->remove($session);
+      $entityManager->flush();
 
-      return $this->render('session/show.html.twig', [
-        'session' => $session,
-        'categories' => $categories,
-      ]);
+      return $this->redirectToRoute('app_session');
     }
 
     #[Route('/session/{id}', name: 'show_session')]
