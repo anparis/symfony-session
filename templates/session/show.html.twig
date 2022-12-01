@@ -39,11 +39,10 @@
       {% for stagiaire in session.stagiaires %}
       <ul>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
-        <button class="btn-delete"><a href="{{path('del_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">supprimer</a></button>
+        <button class="btn-delete"><a href="{{path('del_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">supprimer</a></button>
       </ul>
       {% endfor %}
     </article>
-    <button class="btn-delete">inscrire un stagiaire</button>
   </div>
   <div class="stagiaires-non-registered">
     <article>
@@ -51,11 +50,10 @@
       {% for stagiaire in nonRegistered %}
       <ul>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
-        <button class="btn-delete"><a href="{{path('add_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">ajouter</a></button>
+        <button class="btn-add"><a href="{{path('add_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">ajouter à la session</a></button>
       </ul>
       {% endfor %}
     </article>
-    <button class="btn-delete">inscrire un stagiaire</button>
   </div>
 </main>
 {% endblock %}

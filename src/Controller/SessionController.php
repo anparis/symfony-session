@@ -79,7 +79,7 @@ class SessionController extends AbstractController
       return $this->redirectToRoute('app_session');
     }
 
-    #[Route('/session/{idSe}/{idSt}/delStagiaire', name: 'del_stagiaire')]
+    #[Route('/session/{idSe}/{idSt}/delStagiaire', name: 'del_session_stagiaire')]
     #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
     #[ParamConverter('stagiaire', options: ['mapping' => ['idSt' => 'id']])]
     public function delStagiaire(Stagiaire $stagiaire,Session $session,ManagerRegistry $doctrine): Response
@@ -91,7 +91,9 @@ class SessionController extends AbstractController
       return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
-    #[Route('/session/{id}/addStagiaire', name: 'add_stagiaire')]
+    #[Route('/session/{idSe}/{idSt}/addStagiaire', name: 'add_session_stagiaire')]
+    #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
+    #[ParamConverter('stagiaire', options: ['mapping' => ['idSt' => 'id']])]
     public function addStagiaire(Stagiaire $stagiaire,Session $session,ManagerRegistry $doctrine): Response
     {
       $session->addStagiaire($stagiaire);
