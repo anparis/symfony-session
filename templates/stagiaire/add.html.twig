@@ -3,6 +3,7 @@
 {% block title %}Formulaire des Stagiaires{% endblock %}
 
 {% block body %}
+<main>
 {% if edit %}
 <h1> Edit Stagiaire </h1>
 {%else%}
@@ -18,4 +19,5 @@
   {{ form_row(formStagiaire.nom) }}
   {{ form_row(formStagiaire.prenom) }}
 {{ form_end(formStagiaire) }}
+</main>
 {% endblock %}
