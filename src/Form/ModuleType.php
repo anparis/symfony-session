@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Module;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +17,15 @@ class ModuleType extends AbstractType
 
     $builder
       ->add('nom', TextType::class)
-      ->add('categorie');
+      ->add('categorie', EntityType::class, [
+        // looks for choices from this entity
+        'class' => Categorie::class,
+    
+        'choice_label' => 'nom',
+    
+        // 'multiple' => true,
+        // 'expanded' => true,
+    ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void

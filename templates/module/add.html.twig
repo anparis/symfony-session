@@ -4,7 +4,11 @@
 
 {% block body %}
 <main>
+{% if edit %}
+<h1> Edit Module </h1>
+{% else %}
 <h1> Ajout Module </h1>
+{% endif %}
 
 {{ form_start(formModule) }}
   {{ form_row(formModule.nom) }}

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Module;
 use App\Entity\Session;
 use App\Form\ModuleType;
+use App\Entity\Categorie;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,16 +18,21 @@ class ModuleController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $modules = $doctrine->getRepository(Module::class)->findAll();
-
+        $categories = $doctrine->getRepository(Categorie::class)->findAll();
         return $this->render('module/index.html.twig',[
           'modules' => $modules,
+          'categories' => $categories,
         ]);
     }
 
     #[Route('/module/add', name: 'add_module')]
+    #[Route('/module/{id}/edit', name: 'edit_module')]
     public function add(ManagerRegistry $doctrine, Module $module = null, Request $request): Response
     {
-        
+        if(!$module)
+        {
+          $module = new Module();
+        }
         $form = $this->createForm(ModuleType::class, $module);
         $form->handleRequest($request);
         
@@ -47,7 +53,7 @@ class ModuleController extends AbstractController
         }
         return $this->render('module/add.html.twig',[
           'formModule' => $form->createView(),
-          // 'edit' => $session->getId()
+          'edit' => $module->getId()
         ]);
     }
 
