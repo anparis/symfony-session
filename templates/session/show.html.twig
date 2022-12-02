@@ -9,22 +9,23 @@
   {% if session.programmes is not empty %}
 
     <div class="modules-list">
-      {% set break = false %}
-      {% for categorie in categories %}
-      {% if not break %}
-      <article>
-        <h4>{{categorie}}</h4>
+      {% set categorie = ''%}
+        {% for programme in session.programmes | sort((a, b) => a.module.categorie.id <=> b.module.categorie.id) %}
+        <article>
+        {% if programme.module.categorie.id == categorie%}
+        <ul>
+          <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
+        </ul>
+        {% else %}
+        <h4>{{programme.module.categorie}}</h4>
         <hr>
-        {% for programme in session.programmes %}
-          {% if categorie == programme.module.categorie %}
             <ul>
               <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
             </ul>
-          {% endif %}
-        {% endfor %}
-        </article>
+        {% set categorie = programme.module.categorie.id %}
         {% endif %}
-      {% endfor %}
+        </article>
+        {% endfor %}
     </div>
   {% else %}
     <p>La session ne possède pas de modules.</p>

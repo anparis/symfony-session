@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire des Modules{% endblock %}
+
+{% block body %}
+<main>
+<h1> Ajout Module </h1>
+
+{{ form_start(formModule) }}
+  {{ form_row(formModule.nom) }}
+  {{ form_row(formModule.categorie) }}
+{{ form_end(formModule) }}
+</main>
+{% endblock %}
