@@ -9,7 +9,7 @@
 
     <ul>
     {% for categorie in categories%}
-      <li>{{categorie.nom}}</li><a href="{{ path('edit_categorie', {'id':categorie.id}) }}">edit</a>
+      <li>{{categorie.nom}}</li><a href="{{ path('edit_categorie', {'id':categorie.id}) }}">edit</a>/<a href="{{ path('del_categorie', {'id':categorie.id}) }}">supprimer</a>
       {% endfor %}
     </ul>
     <button><a href="{{path('add_categorie')}}">Ajouter</a></button>

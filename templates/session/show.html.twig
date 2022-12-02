@@ -30,12 +30,28 @@
   {% else %}
     <p>La session ne possède pas de modules.</p>
   {% endif %}
-  {% for programme in nonProgrammes %}
-  <ul>
-    <li>{{programme.module.nom}}</li>
-    <button>Ajouter un module</button>
-  </ul>
-  {% endfor %}
+  {% if nonProgrammes is not empty %}
+  <table class="table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Module</th>
+            <th>Durée</th>
+            <th>Programmer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for module in nonProgrammes %}
+        <tr>
+            <td>{{ module }}</td>
+            <form method="POST" action="{{ path('add_session_module', {'idSe': session.id,'idMo': module.id }) }}">
+                <td><input type="number" min="1" id="nbJours" name="nbJours" size="2"/>jours</td>
+                <td><button type="submit" name="submit" class="add-button">submit</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+  {% endif %}
 
   <br>
   <div class="stagiaires-registered">

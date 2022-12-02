@@ -5,15 +5,16 @@ namespace App\Controller;
 use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Categorie;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
-use App\Repository\SessionRepository;
 use Doctrine\ORM\Mapping\OrderBy;
+use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -103,30 +104,36 @@ class SessionController extends AbstractController
       return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
-    // #[Route('/session/{idSe}/{idMo}/addModule', name: 'add_session_module')]
-    // #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
-    // #[ParamConverter('module', options: ['mapping' => ['idMo' => 'id']])]
-    // public function addModule(Module $stagiaire,Session $session,ManagerRegistry $doctrine): Response
-    // {
-    //   $session->addProgramme($stagiaire);
-    //   $entityManager = $doctrine->getManager();
-    //   $entityManager->persist($session);
-    //   $entityManager->flush();
-    //   return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
-    // }
+    #[Route('/session/{idSe}/{idMo}/addModule', name: 'add_session_module')]
+    #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
+    #[ParamConverter('module', options: ['mapping' => ['idMo' => 'id']])]
+    public function addModule(Module $module,Session $session,ManagerRegistry $doctrine): Response
+    {
+      if(isset($_POST['submit']))
+      {
+        $programme = new Programme();
+        $nb_jour = filter_input(INPUT_POST,'nbJours',FILTER_VALIDATE_INT);
+
+        $programme->setNbJours($nb_jour);
+        $programme->setModule($module);
+        $session->addProgramme($programme);
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
+      }
+    }
 
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session, ManagerRegistry $doctrine, SessionRepository $sr): Response
     {
-      $categories = $doctrine->getRepository(Categorie::class)->findAll();
       $nonRegistered = $sr->findNonRegistered($session->getId());
       $nonProgrammes = $sr->findNonProgrammes($session->getId());
-      
       return $this->render('session/show.html.twig', [
         'session' => $session,
         'nonRegistered' => $nonRegistered,
         'nonProgrammes' => $nonProgrammes,
-        'categories' => $categories,
       ]);
     }
 }

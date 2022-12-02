@@ -8,14 +8,16 @@
     <h1>Liste des Modules ✅</h1>
 
     {% for categorie in categories%}
+    {% if categorie.modules is not empty %}
     <h4>{{ categorie }}</h4>
     <ul>
       {% for module in modules %}
       {% if(categorie.id == module.categorie.id ) %}
-      <li>{{module.nom}}</li><a href="{{ path('edit_module', {'id':module.id}) }}">edit</a>
+      <li>{{module.nom}}</li><a href="{{ path('edit_module', {'id':module.id}) }}">edit</a>/<a href="{{ path('del_module', {'id':module.id}) }}">supprimer</a>
       {% endif %}
       {% endfor %}
     </ul>
+    {% endif %}
     {% endfor %}
     <button><a href="{{path('add_module')}}">Ajouter</a></button>
   </div>

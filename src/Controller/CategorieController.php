@@ -52,4 +52,15 @@ class CategorieController extends AbstractController
           'edit' => $categorie->getId()
         ]);
     }
+
+    #[Route('/categorie/{id}/delete', name: 'del_categorie')]
+    public function delCategorie(Categorie $categorie, ManagerRegistry $doctrine): Response
+    {
+      // Manager de doctrine, permet d'acceder au persist et au flush
+      $entityManager = $doctrine->getManager();
+      $entityManager->remove($categorie);
+      $entityManager->flush();
+
+      return $this->redirectToRoute('app_categorie');
+    }
 }

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Module;
-use App\Entity\Session;
 use App\Form\ModuleType;
 use App\Entity\Categorie;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,7 +38,7 @@ class ModuleController extends AbstractController
         // Traitement du formulaire
         // isValid = filterInput
         if($form->isSubmitted() && $form->isValid()){
-          //objet session hydrate par les donnees du formulaire
+          //objet module hydrate par les donnees du formulaire
           $module = $form->getData();
   
           // Manager de doctrine, permet d'acceder au persist et au flush
@@ -57,4 +56,14 @@ class ModuleController extends AbstractController
         ]);
     }
 
+    #[Route('/module/{id}/delete', name: 'del_module')]
+    public function delModule(Module $module, ManagerRegistry $doctrine): Response
+    {
+      // Manager de doctrine, permet d'acceder au persist et au flush
+      $entityManager = $doctrine->getManager();
+      $entityManager->remove($module);
+      $entityManager->flush();
+
+      return $this->redirectToRoute('app_module');
+    }
 }
