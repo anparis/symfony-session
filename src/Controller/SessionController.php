@@ -111,18 +111,30 @@ class SessionController extends AbstractController
     {
       if(isset($_POST['submit']))
       {
+        $entityManager = $doctrine->getManager();
         $programme = new Programme();
         $nb_jour = filter_input(INPUT_POST,'nbJours',FILTER_VALIDATE_INT);
 
         $programme->setNbJours($nb_jour);
         $programme->setModule($module);
+        $entityManager->persist($programme);
         $session->addProgramme($programme);
 
-        $entityManager = $doctrine->getManager();
         $entityManager->persist($session);
         $entityManager->flush();
         return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
       }
+    }
+
+    #[Route('/session/{idSe}/{idPr}/delModule', name: 'del_session_prog')]
+    #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
+    #[ParamConverter('programme', options: ['mapping' => ['idPr' => 'id']])]
+    public function delModule(Programme $programme,Session $session,ManagerRegistry $doctrine): Response
+    {
+      $entityManager = $doctrine->getManager();
+      $entityManager->remove($programme);
+      $entityManager->flush();
+      return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
     #[Route('/session/{id}', name: 'show_session')]

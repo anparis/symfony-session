@@ -15,12 +15,14 @@
         {% if programme.module.categorie.id == categorie%}
         <ul>
           <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
+          <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">supprimer</a>
         </ul>
         {% else %}
         <h4>{{programme.module.categorie}}</h4>
         <hr>
             <ul>
               <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
+                <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">supprimer</a>
             </ul>
         {% set categorie = programme.module.categorie.id %}
         {% endif %}
