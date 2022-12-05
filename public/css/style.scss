@@ -20,7 +20,7 @@ html, body{
 
 body {
   line-height: 1.5;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 button{
@@ -46,11 +46,21 @@ a{
   color: $dark;
 }
 
+h3{
+  margin-top: 30px;
+  color: $category-color;
+  font-size: 1.3em;
+  border-top: 2px solid $category-color;
+  border-bottom: 2px solid $category-color;
+  width: fit-content;
+}
+
 table{
   width: 100%;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
   display: table;
   border-collapse: collapse;
+  margin: 30px 0 50px 0;
   th,
   td{
     text-align: center;
@@ -63,9 +73,23 @@ table{
     tr:nth-child(even) {
       background: $table-gray;
     }
+    td:nth-last-child(2){
+      color:$add-color;
+      font-size: 1.4em;
+    }
+    tr.complete{
+      border: 2px solid $danger-color;
+      td:first-child:before{
+        content: 'COMPLET ';
+        color: $danger-color;
+      }
+      td:nth-last-child(2){
+        color:$danger-color;
+        font-size: 1.4em;
+      }
+    }
   }
 }
-
 
 nav{
   background-color: $nav-color;

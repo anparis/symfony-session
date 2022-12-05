@@ -22,18 +22,15 @@
     </thead>
     <tbody>
       {% for session in sessionsCurrent %}
-      <tr>
+      {% if session.nbPlacesReservees == session.nbPlaces %}
+      <tr class="complete">
         <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
         <td>{{session.dateDebut | date('d/m/Y')}}</td>
         <td>{{session.dateFin | date('d/m/Y') }}</td>
         <td>{{session.nbPlaces}}</td>
         {% if session.stagiaires is not empty %}
-        {% for stagiaire in session.stagiaires %}
-        {% if loop.last %}
-        <td>{{ loop.index }}</td>
-        <td>{{ session.nbPlaces - loop.index }}</td>
-        {% endif %}
-        {% endfor %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
         {% else %}
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
@@ -43,6 +40,25 @@
           <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
         </td>
       </tr>
+      {% else %}
+      <tr class="normal">
+        <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+        <td>{{session.dateDebut | date('d/m/Y')}}</td>
+        <td>{{session.dateFin | date('d/m/Y') }}</td>
+        <td>{{session.nbPlaces}}</td>
+        {% if session.stagiaires is not empty %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
+        {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+        {% endif %}
+        <td>
+          <button class="modules edit"><a href="{{path('edit_session', {'id':session.id})}}">✍</a></button>
+          <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
+        </td>
+      </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
@@ -67,18 +83,15 @@
     </thead>
     <tbody>
       {% for session in sessionsPast %}
-      <tr>
+      {% if session.nbPlacesReservees == session.nbPlaces %}
+      <tr class="complete">
         <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
         <td>{{session.dateDebut | date('d/m/Y')}}</td>
         <td>{{session.dateFin | date('d/m/Y') }}</td>
         <td>{{session.nbPlaces}}</td>
         {% if session.stagiaires is not empty %}
-        {% for stagiaire in session.stagiaires %}
-        {% if loop.last %}
-        <td>{{ loop.index }}</td>
-        <td>{{ session.nbPlaces - loop.index }}</td>
-        {% endif %}
-        {% endfor %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
         {% else %}
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
@@ -88,6 +101,25 @@
           <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
         </td>
       </tr>
+      {% else %}
+      <tr class="normal">
+        <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+        <td>{{session.dateDebut | date('d/m/Y')}}</td>
+        <td>{{session.dateFin | date('d/m/Y') }}</td>
+        <td>{{session.nbPlaces}}</td>
+        {% if session.stagiaires is not empty %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
+        {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+        {% endif %}
+        <td>
+          <button class="modules edit"><a href="{{path('edit_session', {'id':session.id})}}">✍</a></button>
+          <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
+        </td>
+      </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
@@ -110,27 +142,43 @@
     </thead>
     <tbody>
       {% for session in sessionsFuture %}
-      <tr>
+      {% if session.nbPlacesReservees == session.nbPlaces %}
+      <tr class="complete">
         <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
         <td>{{session.dateDebut | date('d/m/Y')}}</td>
         <td>{{session.dateFin | date('d/m/Y') }}</td>
         <td>{{session.nbPlaces}}</td>
         {% if session.stagiaires is not empty %}
-        {% for stagiaire in session.stagiaires %}
-        {% if loop.last %}
-        <td>{{ loop.index }}</td>
-        <td>{{ session.nbPlaces - loop.index }}</td>
-        {% endif %}
-        {% endfor %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
         {% else %}
         <td>0</td>
         <td>{{session.nbPlaces}}</td>
         {% endif %}
         <td>
-          <button class="modules add-btn"><a href="{{path('edit_session', {'id':session.id})}}">✍</a></button>/
-          <button class="modules delete-btn"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
+          <button class="modules edit"><a href="{{path('edit_session', {'id':session.id})}}">✍</a></button>
+          <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
         </td>
       </tr>
+      {% else %}
+      <tr class="normal">
+        <td><a href="{{path('show_session', {'id': session.id}) }}">{{session.titre}}</a></td>
+        <td>{{session.dateDebut | date('d/m/Y')}}</td>
+        <td>{{session.dateFin | date('d/m/Y') }}</td>
+        <td>{{session.nbPlaces}}</td>
+        {% if session.stagiaires is not empty %}
+        <td>{{ session.nbPlacesReservees }}</td>
+        <td>{{ session.nbPlaces - session.nbPlacesReservees }}</td>
+        {% else %}
+        <td>0</td>
+        <td>{{session.nbPlaces}}</td>
+        {% endif %}
+        <td>
+          <button class="modules edit"><a href="{{path('edit_session', {'id':session.id})}}">✍</a></button>
+          <button class="modules danger"><a href="{{path('del_session', {'id':session.id})}}">-</a></button>
+        </td>
+      </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>

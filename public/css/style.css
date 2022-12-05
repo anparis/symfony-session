@@ -9,7 +9,7 @@ html, body {
 
 body {
   line-height: 1.5;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 button {
@@ -35,11 +35,23 @@ a {
   color: hsl(0deg, 0%, 0%);
 }
 
+h3 {
+  margin-top: 30px;
+  color: hsl(275deg, 30%, 46%);
+  font-size: 1.3em;
+  border-top: 2px solid hsl(275deg, 30%, 46%);
+  border-bottom: 2px solid hsl(275deg, 30%, 46%);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 table {
   width: 100%;
   box-shadow: 0 1px 3px hsla(0deg, 0%, 0%, 0.2);
   display: table;
   border-collapse: collapse;
+  margin: 30px 0 50px 0;
 }
 table th,
 table td {
@@ -51,6 +63,21 @@ table thead {
 }
 table tbody tr:nth-child(even) {
   background: hsla(30deg, 12%, 90%, 0.38);
+}
+table tbody td:nth-last-child(2) {
+  color: hsla(119deg, 83%, 52%, 0.89);
+  font-size: 1.4em;
+}
+table tbody tr.complete {
+  border: 2px solid hsl(0deg, 85%, 67%);
+}
+table tbody tr.complete td:first-child:before {
+  content: "COMPLET ";
+  color: hsl(0deg, 85%, 67%);
+}
+table tbody tr.complete td:nth-last-child(2) {
+  color: hsl(0deg, 85%, 67%);
+  font-size: 1.4em;
 }
 
 nav {
