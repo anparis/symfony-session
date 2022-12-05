@@ -3,66 +3,76 @@
 {% block title %}Detail de la session{% endblock %}
 
 {% block body %}
+<header class="title">
+  <div class="date">
+    A partir du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }}
+  </div>
+  <h2>{{session.titre}}</h2>
+</header>
 <main>
-  <p>A partir du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }}</p>
-  <h1>{{session.titre}}</h1>
   {% if session.programmes is not empty %}
 
-    <div class="modules-list">
-      {% set categorie = ''%}
-        {% for programme in session.programmes | sort((a, b) => a.module.categorie.id <=> b.module.categorie.id) %}
-        <article>
+  <div class="modules-list">
+    {% set categorie = ''%}
+    {% for programme in session.programmes | sort((a, b) => a.module.categorie.id <=> b.module.categorie.id) %}
         {% if programme.module.categorie.id == categorie%}
-        <ul>
+        <ul role="list" class="modules">
+          <button class="danger">
+            <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a>
+          </button>
           <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
-          <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">supprimer</a>
         </ul>
         {% else %}
-        <h4>{{programme.module.categorie}}</h4>
-        <hr>
-            <ul>
-              <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
-                <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">supprimer</a>
-            </ul>
+        <h4 class="categorie">{{programme.module.categorie}}</h4>
+        <ul role="list" class="modules">
+          <button class="danger"><a
+              href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a></button>
+          <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
+        </ul>
         {% set categorie = programme.module.categorie.id %}
         {% endif %}
-        </article>
-        {% endfor %}
-    </div>
+      {% endfor %}
+  </div>
   {% else %}
-    <p>La session ne possède pas de modules.</p>
+  <p>La session ne possède pas de modules.</p>
   {% endif %}
   {% if nonProgrammes is not empty %}
   <table class="table-dark table-striped">
     <thead>
-        <tr>
-            <th>Module</th>
-            <th>Durée</th>
-            <th>Programmer</th>
-        </tr>
+      <tr>
+        <th>Module</th>
+        <th>Durée</th>
+        <th>Programmer</th>
+      </tr>
     </thead>
     <tbody>
-        {% for module in nonProgrammes %}
-        <tr>
-            <td>{{ module }}</td>
-            <form method="POST" action="{{ path('add_session_module', {'idSe': session.id,'idMo': module.id }) }}">
-                <td><input type="number" min="1" id="nbJours" name="nbJours" size="2"/>jours</td>
-                <td><button type="submit" name="submit" class="add-button">submit</button></td>
-            </form>
-        </tr>
-        {% endfor %}
+      {% for module in nonProgrammes %}
+      <tr>
+        <td>{{ module }}</td>
+        <form method="POST" action="{{ path('add_session_module', {'idSe': session.id,'idMo': module.id }) }}">
+          <td><input type="number" min="1" id="nbJours" name="nbJours" size="2" />jours</td>
+          <td><button type="submit" name="submit" class="add-btn">submit</button></td>
+        </form>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
   {% endif %}
 
   <br>
   <div class="stagiaires-registered">
+    {% for message in app.flashes('error') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+    {% endfor %}
     <article>
       <h4>Stagiaires inscrits</h4>
       {% for stagiaire in session.stagiaires %}
-      <ul>
+      <ul role="list" class="modules">
+        <button class="danger "><a
+            href="{{path('del_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">-</a></button>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
-        <button class="btn-delete"><a href="{{path('del_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">supprimer</a></button>
       </ul>
       {% endfor %}
     </article>
@@ -71,9 +81,10 @@
     <article>
       <h4>Stagiaires non inscrits</h4>
       {% for stagiaire in nonRegistered %}
-      <ul>
+      <ul role="list" class="modules">
+        <button class="add-btn "><a
+            href="{{path('add_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">+</a></button>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
-        <button class="btn-add"><a href="{{path('add_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">ajouter à la session</a></button>
       </ul>
       {% endfor %}
     </article>

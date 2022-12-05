@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Module;
-use App\Entity\Session;
 use App\Entity\Categorie;
 use App\Entity\Programme;
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use Doctrine\ORM\Mapping\OrderBy;
@@ -14,7 +14,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -97,10 +96,20 @@ class SessionController extends AbstractController
     #[ParamConverter('stagiaire', options: ['mapping' => ['idSt' => 'id']])]
     public function addStagiaire(Stagiaire $stagiaire,Session $session,ManagerRegistry $doctrine): Response
     {
-      $session->addStagiaire($stagiaire);
-      $entityManager = $doctrine->getManager();
-      $entityManager->persist($session);
-      $entityManager->flush();
+      if($session->isComplet())
+      {
+        $this->addFlash(
+          'error',
+          'La session est déjà complète !'
+        );
+      }
+      else
+      {
+        $session->addStagiaire($stagiaire);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($session);
+        $entityManager->flush();
+      }
       return $this->redirectToRoute('show_session',['id'=>$session->getId()]);
     }
 
@@ -138,7 +147,7 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session, ManagerRegistry $doctrine, SessionRepository $sr): Response
+    public function show(Session $session, SessionRepository $sr): Response
     {
       $nonRegistered = $sr->findNonRegistered($session->getId());
       $nonProgrammes = $sr->findNonProgrammes($session->getId());

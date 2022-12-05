@@ -25,14 +25,13 @@
       <a href="{{ path('app_user') }} ">Formateurs</a>
       <a href="{{ path('app_module') }} ">Modules</a>
       <a href="{{ path('app_categorie') }} ">Categories</a>
-      <button><a href="{{ path('app_logout') }}">Logout</a></button>
-      <p>{{ app.user.email }}</p>
+      <button class="danger"><a href="{{ path('app_logout') }}">Logout</a></button>
+      <span>{{ app.user.email }}</span>
       {% else %}
       <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
       <button><a href="{{ path('app_register') }}">Inscription</a></button>
       {% endif %}
     </nav>
-    <br>
     {% block body %}
     {% endblock %}
     <br>

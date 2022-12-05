@@ -119,6 +119,21 @@ class Session
         return $this->stagiaires;
     }
 
+    public function nbPlacesReservees(): int
+    {
+        return count($this->getStagiaires());
+    }
+    
+    public function isComplet(): bool
+    {
+      $complet = false;
+      if($this->getNbPlaces()==$this->nbPlacesReservees())
+      {
+        $complet = true;
+      }
+      return $complet;
+    }
+
     public function addStagiaire(Stagiaire $stagiaire): self
     {
         if (!$this->stagiaires->contains($stagiaire)) {

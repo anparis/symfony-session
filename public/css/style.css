@@ -1,29 +1,167 @@
-*{
+* {
   box-sizing: border-box;
-}
-body{
   margin: 0;
-  padding: 0;
 }
 
-nav{
-  background-color: hsla(274, 64%, 86%, 0.329);
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+}
+
+button {
+  border: inherit;
+  border-radius: 3px;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+a {
+  color: hsl(0deg, 0%, 0%);
+}
+
+table {
+  width: 100%;
+  box-shadow: 0 1px 3px hsla(0deg, 0%, 0%, 0.2);
+  display: table;
+  border-collapse: collapse;
+}
+
+nav {
+  background-color: hsla(274deg, 64%, 86%, 0.33);
   display: flex;
   align-items: center;
   gap: 40px;
   height: 60px;
   padding: 0 20px;
+  box-shadow: 0px -2px 7px hsla(0deg, 0%, 0%, 0.25);
 }
 
-main{
-  padding: 0 40px;
+main {
+  padding: 0 100px;
 }
 
-.modules-list{
-  background-color: hsl(34, 74%, 82%);
+.title {
+  background: hsl(280deg, 37%, 17%);
+  color: hsl(274deg, 85%, 67%);
+  width: 100%;
+  padding: 20px 120px;
+}
+.title .date {
+  color: hsl(0deg, 0%, 100%);
+}
+.title .date::before {
+  display: inline-block;
+  width: 70px;
+  height: 7px;
+  background: hsl(274deg, 85%, 67%);
+  content: "";
+  margin-right: 1.1em;
 }
 
-.sessions-list{
-  background-color: hsl(34, 74%, 82%);
-
+.modules-list {
+  background-color: hsl(34deg, 74%, 82%);
+  margin: 20px 0;
+  padding: 10px;
 }
+
+.modules {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 5px 0;
+}
+
+.interns-list {
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.interns-list .interns-details {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
+  background-color: hsl(34deg, 74%, 82%);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.interns-list .interns-details .sessions-list {
+  width: 200px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px 0;
+  background: hsla(274deg, 39%, 78%, 0.329);
+}
+.interns-list .interns-details .sessions-list .date {
+  font-weight: 700;
+  font-size: 0.55em;
+  background: hsl(280deg, 37%, 17%);
+  color: hsl(274deg, 85%, 67%);
+}
+
+#intern-btn {
+  margin-top: 20px;
+}
+
+.button-color {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(274deg, 85%, 67%);
+}
+
+.add-btn {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsla(119deg, 83%, 52%, 0.89);
+  font-weight: 700;
+  padding: 0 8px;
+}
+.add-btn a {
+  text-decoration: inherit;
+  color: hsl(0deg, 0%, 100%);
+}
+
+.danger {
+  background-color: hsl(0deg, 85%, 67%);
+  font-weight: 700;
+  padding: 0 8px;
+}
+.danger a {
+  text-decoration: inherit;
+  color: hsl(0deg, 0%, 100%);
+}
+
+.edit {
+  background-color: hsl(274deg, 85%, 67%);
+  font-weight: 700;
+  padding: 0 8px;
+}
+.edit a {
+  text-decoration: inherit;
+  color: hsl(0deg, 0%, 100%);
+}
+
+.categorie {
+  font-size: 1.3em;
+  color: hsl(275deg, 30%, 46%);
+}
+
+.font-small {
+  font-size: x-small;
+}/*# sourceMappingURL=style.css.map */

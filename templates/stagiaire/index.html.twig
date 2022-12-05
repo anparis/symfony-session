@@ -3,29 +3,41 @@
 {% block title %}Liste des Stagiaires{% endblock %}
 
 {% block body %}
+<header class="title">
+  <h2>La liste des stagiaires</h2>
+</header>
 <main>
- {% for stagiaire in stagiaires %}
- <article>
-  <h4>{{stagiaire}}</h4>
-  <p>mail: {{stagiaire.email}}</p>
-  <p>tel: {{stagiaire.tel}}</p>
-  <p>ville: {{stagiaire.ville}}</p>
-  <p>date de naissance: {{stagiaire.datenaissance | date('d/m/Y')}}</p>
-  <p>sexe: {{stagiaire.sexe}}</p>
+  <div class="interns-list">
+    {% for stagiaire in stagiaires %}
+    <div class="interns-details">
+      <article>
+        <a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">
+          <h4>{{stagiaire}}</h4>
+        </a>
+        <p>mail: {{stagiaire.email}}</p>
+        <p>tel: {{stagiaire.tel}}</p>
+        <p>ville: {{stagiaire.ville}}</p>
+        <p>date de naissance: {{stagiaire.datenaissance | date('d/m/Y')}}</p>
+        <p>sexe: {{stagiaire.sexe}}</p>
+      </article>
 
-  <div class="sessions-list">
-    <article>
-      <!-- cant access session title -->
-      {% for session in stagiaire.sessions %}
-        <p>Du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }} au {{ session.dateFin | format_datetime('long', 'none', locale='fr')}}</p>
-        <h4>{{ session.titre}} </h4>
-      {% endfor %}
-    </article>
+      {% if stagiaire.sessions is not empty %}
+      <div class="sessions-list">
+        {% for session in stagiaire.sessions %}
+        <a href="{{path('show_session', {'id': session.id})}}">
+        <article>
+          <p class="date">Du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }} au {{
+            session.dateFin | format_datetime('long', 'none', locale='fr')}}</p>
+          <h4>{{ session.titre}} </h4>
+        </article>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
- </article>
- <hr>
- {% endfor %}
- <a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a>
+  <button id="intern-btn" class="add-btn"><a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a></button>
 </main>
-{% endblock %}
 
+{% endblock %}
