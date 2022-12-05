@@ -49,7 +49,7 @@ class Session
     {
         return $this->nb_places;
     }
-
+    
     public function setNbPlaces(int $nb_places): self
     {
         $this->nb_places = $nb_places;

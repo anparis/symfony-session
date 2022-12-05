@@ -24,6 +24,7 @@
       {% if stagiaire.sessions is not empty %}
       <div class="sessions-list">
         {% for session in stagiaire.sessions %}
+        <div class="session">
         <a href="{{path('show_session', {'id': session.id})}}">
         <article>
           <p class="date">Du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }} au {{
@@ -31,6 +32,7 @@
           <h4>{{ session.titre}} </h4>
         </article>
         </a>
+      </div>
         {% endfor %}
       </div>
       {% endif %}

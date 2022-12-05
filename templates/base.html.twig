@@ -20,13 +20,16 @@
   <div class="wrapper">
     <nav>
       {% if app.user %}
-      <a href="{{ path('app_session') }}">G-sessions.DevCenter</a>
-      <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
-      <a href="{{ path('app_user') }} ">Formateurs</a>
-      <a href="{{ path('app_module') }} ">Modules</a>
-      <a href="{{ path('app_categorie') }} ">Categories</a>
-      <button class="danger"><a href="{{ path('app_logout') }}">Logout</a></button>
-      <span>{{ app.user.email }}</span>
+      <div class="nav-left">
+        <a href="{{ path('app_session') }}">G-sessions.DevCenter</a>
+      </div>
+      <div class="nav-right">
+        <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
+        <a href="{{ path('app_user') }} ">Formateurs</a>
+        <a href="{{ path('app_module') }} ">Modules</a>
+        <a href="{{ path('app_categorie') }} ">Categories</a>
+        <button class="danger"><a href="{{ path('app_logout') }}">Logout</a></button>
+      </div>
       {% else %}
       <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
       <button><a href="{{ path('app_register') }}">Inscription</a></button>

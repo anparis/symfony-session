@@ -10,6 +10,7 @@ use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use Doctrine\ORM\Mapping\OrderBy;
 use App\Repository\SessionRepository;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,6 +50,13 @@ class SessionController extends AbstractController
       // Traitement du formulaire
       // isValid = filterInput
       if($form->isSubmitted() && $form->isValid()){
+        if($form['nb_places']->getData() < $session->nbPlacesReservees()){
+          $this->addFlash(
+            'error',
+            'Le nombre de places doit être supérieur ou égale à '.$session->nbPlacesReservees()
+          );
+          return $this->redirectToRoute('edit_session', ['id'=>$session->getId()]);
+        }
         //objet session hydrate par les donnees du formulaire
         $session = $form->getData();
 

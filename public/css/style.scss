@@ -7,6 +7,7 @@ $danger-color : hsl(0, 85%, 67%);
 $category-color: hsl(275, 30%, 46%);
 $add-color:hsla(119, 83%, 52%, 0.89);
 $module1-color:hsl(58, 66%, 82%);
+$table-gray:hsla(30, 12%, 90%, 0.38);
 
 *{
   box-sizing: border-box;
@@ -19,6 +20,7 @@ html, body{
 
 body {
   line-height: 1.5;
+  font-size: 1.5em;
 }
 
 button{
@@ -48,22 +50,40 @@ table{
   width: 100%;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
   display: table;
-  border-collapse: collapse
+  border-collapse: collapse;
+  th,
+  td{
+    text-align: center;
+    padding: 8px 15px;
+  }
+  thead{
+    background-color: $nav-color;
+  }
+  tbody{
+    tr:nth-child(even) {
+      background: $table-gray;
+    }
+  }
 }
 
 
 nav{
   background-color: $nav-color;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 40px;
   height: 60px;
   padding: 0 20px;
   box-shadow: 0px -2px 7px hsla(0, 0%, 0%, 0.25);
+  .nav-right{
+    display: flex;
+    gap: 30px;
+  }
 }
 
 main{
-  padding: 0 100px;
+  padding: 0 30px;
 }
 
 .title{
@@ -99,9 +119,44 @@ main{
   margin: 5px 0;
 }
 
+// SHOW INTERN
+.intern{
+  margin: 50px 0;
+  .intern-details{
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
+    background-color: hsl(34, 74%, 82%);
+    padding: 20px;
+    .edit-intern{
+      justify-content: space-between;
+      display: flex;
+      margin-bottom: 10px;
+      h4{
+        font-size: 3em;
+      }
+    }
+    .sessions-list{
+      height: fit-content;
+      .session{
+        padding: 5px 0;
+        background: hsla(274, 39%, 78%, 0.329);
+        margin-bottom: 10px;
+        a{
+          text-decoration: inherit;
+          .date{
+            font-weight: 700;
+            font-size: 0.55em;
+            // width: 100%;
+            background: $title-background-color;
+            color: $flashy-violet;
+          }
+        }
+      }
+    }
+  }
+}
 // INTERNS LIST
 .interns-list{
-  margin: 30px 0;
+  margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -115,14 +170,20 @@ main{
     .sessions-list{
       width: 200px;
       height: fit-content;
-      padding: 5px 0;
-      background: hsla(274, 39%, 78%, 0.329);
-      .date{
-        font-weight: 700;
-        font-size: 0.55em;
-        // width: 100%;
-        background: $title-background-color;
-        color: $flashy-violet;
+      .session{
+        padding: 5px 0;
+        background: hsla(274, 39%, 78%, 0.329);
+        margin-bottom: 10px;
+        a{
+          text-decoration: inherit;
+          .date{
+            font-weight: 700;
+            font-size: 0.55em;
+            // width: 100%;
+            background: $title-background-color;
+            color: $flashy-violet;
+          }
+        }
       }
     }
   }
@@ -173,6 +234,6 @@ main{
   color: $category-color;
 }
 
-.font-small{
-  font-size: x-small;
+.big-btn{
+    font-size: 3em;
 }

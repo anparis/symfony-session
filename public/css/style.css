@@ -9,6 +9,7 @@ html, body {
 
 body {
   line-height: 1.5;
+  font-size: 1.5em;
 }
 
 button {
@@ -40,19 +41,35 @@ table {
   display: table;
   border-collapse: collapse;
 }
+table th,
+table td {
+  text-align: center;
+  padding: 8px 15px;
+}
+table thead {
+  background-color: hsla(274deg, 64%, 86%, 0.33);
+}
+table tbody tr:nth-child(even) {
+  background: hsla(30deg, 12%, 90%, 0.38);
+}
 
 nav {
   background-color: hsla(274deg, 64%, 86%, 0.33);
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 40px;
   height: 60px;
   padding: 0 20px;
   box-shadow: 0px -2px 7px hsla(0deg, 0%, 0%, 0.25);
 }
+nav .nav-right {
+  display: flex;
+  gap: 30px;
+}
 
 main {
-  padding: 0 100px;
+  padding: 0 30px;
 }
 
 .title {
@@ -86,8 +103,44 @@ main {
   margin: 5px 0;
 }
 
+.intern {
+  margin: 50px 0;
+}
+.intern .intern-details {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
+  background-color: hsl(34deg, 74%, 82%);
+  padding: 20px;
+}
+.intern .intern-details .edit-intern {
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 10px;
+}
+.intern .intern-details .edit-intern h4 {
+  font-size: 3em;
+}
+.intern .intern-details .sessions-list {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.intern .intern-details .sessions-list .session {
+  padding: 5px 0;
+  background: hsla(274deg, 39%, 78%, 0.329);
+  margin-bottom: 10px;
+}
+.intern .intern-details .sessions-list .session a {
+  text-decoration: inherit;
+}
+.intern .intern-details .sessions-list .session a .date {
+  font-weight: 700;
+  font-size: 0.55em;
+  background: hsl(280deg, 37%, 17%);
+  color: hsl(274deg, 85%, 67%);
+}
+
 .interns-list {
-  margin: 30px 0;
+  margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -107,10 +160,16 @@ main {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+.interns-list .interns-details .sessions-list .session {
   padding: 5px 0;
   background: hsla(274deg, 39%, 78%, 0.329);
+  margin-bottom: 10px;
 }
-.interns-list .interns-details .sessions-list .date {
+.interns-list .interns-details .sessions-list .session a {
+  text-decoration: inherit;
+}
+.interns-list .interns-details .sessions-list .session a .date {
   font-weight: 700;
   font-size: 0.55em;
   background: hsl(280deg, 37%, 17%);
@@ -162,6 +221,6 @@ main {
   color: hsl(275deg, 30%, 46%);
 }
 
-.font-small {
-  font-size: x-small;
+.big-btn {
+  font-size: 3em;
 }/*# sourceMappingURL=style.css.map */
