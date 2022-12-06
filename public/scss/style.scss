@@ -1,58 +1,41 @@
-$nav-color : hsla(274, 64%, 86%, 0.33);
-$title-background-color : hsl(280, 37%, 17%);
-$flashy-violet : hsl(274, 85%, 67%);
-$white : hsl(0, 0%, 100%);
-$dark : hsl(0, 0%, 0%);
-$danger-color : hsl(0, 85%, 67%);
+@forward "globals/index";
+
+$nav-color: hsla(274, 64%, 86%, 0.33);
+$title-background-color: hsl(280, 37%, 17%);
+$flashy-violet: hsl(274, 85%, 67%);
+$white: hsl(0, 0%, 100%);
+$dark: hsl(0, 0%, 0%);
+$danger-color: hsl(0, 85%, 67%);
 $category-color: hsl(275, 30%, 46%);
-$add-color:hsla(119, 83%, 52%, 0.89);
-$module1-color:hsl(58, 66%, 82%);
-$table-gray:hsla(30, 12%, 90%, 0.38);
+$add-color: hsla(119, 83%, 52%, 0.89);
+$module1-color: hsl(34, 74%, 82%);
+$module2-color: hsl(58, 65%, 82%);
+$module3-color: hsl(58, 75%, 49%);
+$table-gray: hsla(30, 12%, 90%, 0.38);
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-}
-
-html, body{
-  height: 100%;
-}
-
-body {
-  line-height: 1.5;
-  font-size: 1.3em;
-}
-
-button{
-  border:inherit;
-  border-radius: 3px;
-}
-
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-input, button, textarea, select {
-  font: inherit;
-}
-
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-a{
+a {
   color: $dark;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-h3{
-  margin-top: 30px;
+button {
+  border: inherit;
+  border-radius: 3px;
+  background-color: $flashy-violet;
+  cursor: pointer;
+  a {
+    color: $white;
+  }
+}
+
+.session-list h3 {
+  display: flex;
+  margin-top: 50px;
   color: $category-color;
   font-size: 1.3em;
-  border-top: 2px solid $category-color;
-  border-bottom: 2px solid $category-color;
-  width: fit-content;
 }
 
 table{
@@ -91,7 +74,7 @@ table{
   }
 }
 
-nav{
+nav {
   background-color: $nav-color;
   display: flex;
   justify-content: space-between;
@@ -100,43 +83,45 @@ nav{
   height: 60px;
   padding: 0 20px;
   box-shadow: 0px -2px 7px hsla(0, 0%, 0%, 0.25);
-  .nav-right{
+  @include media('<phone'){
+    background-color: $add-color;
+  }
+  .nav-right {
     display: flex;
     gap: 30px;
   }
 }
 
-main{
+main {
   padding: 0 30px;
+
 }
 
-.title{
+.title {
   background: $title-background-color;
   color: $flashy-violet;
   width: 100%;
   padding: 20px 120px;
-  .date{
+  .date {
     color: $white;
-    &::before{
+    &::before {
       display: inline-block;
       width: 70px;
       height: 7px;
       background: $flashy-violet;
-      content: '';
+      content: "";
       margin-right: 1.1em;
     }
   }
 }
 
-
-.modules-list{
-  background-color: hsl(34, 74%, 82%);
+.modules-list {
+  background-color: $module1-color;
   margin: 20px 0;
   padding: 10px;
-
 }
 
-.modules{
+.modules {
   display: flex;
   gap: 10px;
   padding: 0;
@@ -144,68 +129,91 @@ main{
 }
 
 // SHOW INTERN
-.intern{
+.intern {
   margin: 50px 0;
-  .intern-details{
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  .intern-details {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
-    background-color: hsl(34, 74%, 82%);
-    padding: 20px;
-    .edit-intern{
-      justify-content: space-between;
-      display: flex;
+    background-color: $module2-color;
+    padding: 50px;
+    width: fit-content;
+    .edit-intern {
       margin-bottom: 10px;
-      h4{
-        font-size: 3em;
+      h4 {
+        font-size: 2em;
       }
     }
-    .sessions-list{
-      height: fit-content;
-      .session{
+    .intern-coordinates {
+      border: 2px dashed $flashy-violet;
+      padding: 10px;
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+    .sessions-list {
+      width: fit-content;
+      .session {
+        height: fit-content;
         padding: 5px 0;
-        background: hsla(274, 39%, 78%, 0.329);
+        background: $nav-color;
         margin-bottom: 10px;
-        a{
+        &:hover {
+          transform: scale(1.1);
+          transition: 300ms ease-in-out transform;
+        }
+        a {
           text-decoration: inherit;
-          .date{
+          .date {
             font-weight: 700;
             font-size: 0.55em;
             // width: 100%;
             background: $title-background-color;
             color: $flashy-violet;
           }
+          h4.module-name {
+            padding: 5px;
+          }
         }
       }
     }
   }
 }
+
 // INTERNS LIST
-.interns-list{
+.interns-list {
   margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  .interns-details{
+  gap: 20px;
+  .interns-details {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
-    background-color: hsl(34, 74%, 82%);
+    background-color: $module1-color;
     width: fit-content;
     display: flex;
     gap: 20px;
     padding: 20px;
-    .sessions-list{
-      width: 200px;
+    .sessions-list {
+      width: 230px;
       height: fit-content;
-      .session{
+      .session {
         padding: 5px 0;
-        background: hsla(274, 39%, 78%, 0.329);
+        background: $nav-color;
         margin-bottom: 10px;
-        a{
+        &:hover {
+          transform: scale(1.1);
+          transition: 300ms ease-in-out transform;
+        }
+        a {
           text-decoration: inherit;
-          .date{
+          .date {
             font-weight: 700;
             font-size: 0.55em;
-            // width: 100%;
             background: $title-background-color;
             color: $flashy-violet;
+          }
+          h4.module-name {
+            padding: 5px;
           }
         }
       }
@@ -213,51 +221,62 @@ main{
   }
 }
 
-#intern-btn{
+footer {
+  margin: 0 30px;
+}
+
+#intern-btn {
   margin-top: 20px;
 }
 
-.button-color{
+.button-color {
   color: $white;
   background-color: $flashy-violet;
 }
 
-.add-btn{
+.add-btn {
   color: $white;
   background-color: $add-color;
   font-weight: 700;
   padding: 0 8px;
-  a{
+  a {
     text-decoration: inherit;
     color: $white;
   }
 }
 
-.danger{
+.danger {
   background-color: $danger-color;
   font-weight: 700;
   padding: 0 8px;
-  a{
+  a {
     text-decoration: inherit;
-    color:$white;
+    color: $white;
   }
 }
 
-.edit{
-  background-color: $flashy-violet;
+.edit {
+  background-color: white;
   font-weight: 700;
   padding: 0 8px;
-  a{
+  a {
     text-decoration: inherit;
-    color:$white;
+    color: $white;
   }
 }
 
-.categorie{
+.categorie {
   font-size: 1.3em;
   color: $category-color;
 }
 
-.big-btn{
-    font-size: 3em;
+.big-btn {
+  font-size: 1.2em;
+}
+
+.btn-lg {
+  color: white;
+  &:hover {
+    opacity: 0.6;
+  }
 }

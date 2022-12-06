@@ -34,6 +34,9 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/session, roles: ROLE_USER }
         - { path: ^/stagiaire, roles: ROLE_USER }
+        - { path: ^/categorie, roles: ROLE_USER }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/module, roles: ROLE_USER }
 
 when@test:
     security:

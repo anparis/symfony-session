@@ -21,7 +21,6 @@
         <p>sexe: {{stagiaire.sexe}}</p>
       </article>
 
-      {% if stagiaire.sessions is not empty %}
       <div class="sessions-list">
         {% for session in stagiaire.sessions %}
         <div class="session">
@@ -29,13 +28,12 @@
         <article>
           <p class="date">Du {{ session.dateDebut | format_datetime('long', 'none', locale='fr') }} au {{
             session.dateFin | format_datetime('long', 'none', locale='fr')}}</p>
-          <h4>{{ session.titre}} </h4>
+          <h4 class="module-name">{{ session.titre}} </h4>
         </article>
         </a>
       </div>
         {% endfor %}
       </div>
-      {% endif %}
     </div>
     {% endfor %}
   </div>

@@ -51,7 +51,7 @@
         <td>{{ module }}</td>
         <form method="POST" action="{{ path('add_session_module', {'idSe': session.id,'idMo': module.id }) }}">
           <td><input type="number" min="1" id="nbJours" name="nbJours" size="2" />jours</td>
-          <td><button type="submit" name="submit" class="add-btn">submit</button></td>
+          <td><button type="submit" name="submit" class="add-btn">ajouter</button></td>
         </form>
       </tr>
       {% endfor %}
@@ -59,7 +59,6 @@
   </table>
   {% endif %}
 
-  <br>
   <div class="stagiaires-registered">
     {% for message in app.flashes('error') %}
     <div class="flash-notice">

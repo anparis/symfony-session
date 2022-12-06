@@ -5,16 +5,12 @@
 
 html, body {
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   line-height: 1.5;
-  font-size: 1.3em;
-}
-
-button {
-  border: inherit;
-  border-radius: 3px;
+  font-size: 1.1em;
 }
 
 img, picture, video, canvas, svg {
@@ -31,19 +27,34 @@ ol[role=list] {
   list-style: none;
 }
 
+/**
+*
+* Testing
+*
+**/
 a {
   color: hsl(0deg, 0%, 0%);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-h3 {
-  margin-top: 30px;
+button {
+  border: inherit;
+  border-radius: 3px;
+  background-color: hsl(274deg, 85%, 67%);
+  cursor: pointer;
+}
+button a {
+  color: hsl(0deg, 0%, 100%);
+}
+
+.session-list h3 {
+  display: flex;
+  margin-top: 50px;
   color: hsl(275deg, 30%, 46%);
   font-size: 1.3em;
-  border-top: 2px solid hsl(275deg, 30%, 46%);
-  border-bottom: 2px solid hsl(275deg, 30%, 46%);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 table {
@@ -132,29 +143,48 @@ main {
 
 .intern {
   margin: 50px 0;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
 }
 .intern .intern-details {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
-  background-color: hsl(34deg, 74%, 82%);
-  padding: 20px;
+  background-color: hsl(58deg, 65%, 82%);
+  padding: 50px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .intern .intern-details .edit-intern {
-  justify-content: space-between;
-  display: flex;
   margin-bottom: 10px;
 }
 .intern .intern-details .edit-intern h4 {
-  font-size: 3em;
+  font-size: 2em;
+}
+.intern .intern-details .intern-coordinates {
+  border: 2px dashed hsl(274deg, 85%, 67%);
+  padding: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 20px;
 }
 .intern .intern-details .sessions-list {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.intern .intern-details .sessions-list .session {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-.intern .intern-details .sessions-list .session {
   padding: 5px 0;
-  background: hsla(274deg, 39%, 78%, 0.329);
+  background: hsla(274deg, 64%, 86%, 0.33);
   margin-bottom: 10px;
+}
+.intern .intern-details .sessions-list .session:hover {
+  transform: scale(1.1);
+  transition: 300ms ease-in-out transform;
 }
 .intern .intern-details .sessions-list .session a {
   text-decoration: inherit;
@@ -165,12 +195,15 @@ main {
   background: hsl(280deg, 37%, 17%);
   color: hsl(274deg, 85%, 67%);
 }
+.intern .intern-details .sessions-list .session a h4.module-name {
+  padding: 5px;
+}
 
 .interns-list {
   margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 .interns-list .interns-details {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
@@ -183,15 +216,19 @@ main {
   padding: 20px;
 }
 .interns-list .interns-details .sessions-list {
-  width: 200px;
+  width: 230px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
 .interns-list .interns-details .sessions-list .session {
   padding: 5px 0;
-  background: hsla(274deg, 39%, 78%, 0.329);
+  background: hsla(274deg, 64%, 86%, 0.33);
   margin-bottom: 10px;
+}
+.interns-list .interns-details .sessions-list .session:hover {
+  transform: scale(1.1);
+  transition: 300ms ease-in-out transform;
 }
 .interns-list .interns-details .sessions-list .session a {
   text-decoration: inherit;
@@ -201,6 +238,13 @@ main {
   font-size: 0.55em;
   background: hsl(280deg, 37%, 17%);
   color: hsl(274deg, 85%, 67%);
+}
+.interns-list .interns-details .sessions-list .session a h4.module-name {
+  padding: 5px;
+}
+
+footer {
+  margin: 0 30px;
 }
 
 #intern-btn {
@@ -234,7 +278,7 @@ main {
 }
 
 .edit {
-  background-color: hsl(274deg, 85%, 67%);
+  background-color: white;
   font-weight: 700;
   padding: 0 8px;
 }
@@ -249,5 +293,12 @@ main {
 }
 
 .big-btn {
-  font-size: 3em;
+  font-size: 1.2em;
+}
+
+.btn-lg {
+  color: white;
+}
+.btn-lg:hover {
+  opacity: 0.6;
 }/*# sourceMappingURL=style.css.map */

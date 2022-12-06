@@ -8,7 +8,7 @@
 </header>
 <main>
   {% if sessionsCurrent %}
-  <div class="current-sessions">
+  <div class="current-sessions session-list">
   <h3>Sessions courantes</h3>
   <table>
     <thead>
@@ -20,7 +20,7 @@
       <th>Places restantes</th>
       <th>Actions</th>
     </thead>
-    <tbody>
+    <tbody class="home-sessions">
       {% for session in sessionsCurrent %}
       {% if session.nbPlacesReservees == session.nbPlaces %}
       <tr class="complete">
@@ -69,7 +69,7 @@
 
 
   {% if sessionsPast %}
-  <div class="past-sessions">
+  <div class="past-sessions session-list">
   <h3>Sessions passées</h3>
   <table>
     <thead>
@@ -81,7 +81,7 @@
       <th>Places restantes</th>
       <th>Actions</th>
     </thead>
-    <tbody>
+    <tbody class="home-sessions">
       {% for session in sessionsPast %}
       {% if session.nbPlacesReservees == session.nbPlaces %}
       <tr class="complete">
@@ -128,7 +128,7 @@
 
 
   {% if sessionsFuture %}
-  <div class="future-sessions"> 
+  <div class="future-sessions session-list"> 
   <h3>Sessions à venir</h3>
   <table>
     <thead>
@@ -140,7 +140,7 @@
       <th>Places restantes</th>
       <th>Actions</th>
     </thead>
-    <tbody>
+    <tbody class="home-sessions">
       {% for session in sessionsFuture %}
       {% if session.nbPlacesReservees == session.nbPlaces %}
       <tr class="complete">
@@ -184,8 +184,6 @@
   </table>
 </div>
   {% endif %}
-
-  <br>
-  <button class="modules add-btn"><a href="{{ path('add_session') }}">+ Ajouter une session</a></button>
+  <button class="add-btn"><a href="{{ path('add_session') }}">+ Ajouter une session</a></button>
 </main>
 {% endblock %}
