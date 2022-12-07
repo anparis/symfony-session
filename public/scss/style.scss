@@ -94,6 +94,8 @@ nav {
   box-shadow: 0px -2px 7px hsla(0, 0%, 0%, 0.25);
   .nav-right {
     display: flex;
+    justify-content: space-evenly;
+    flex: 0.6;
     > * {
       margin-right: 10px;
     }
@@ -288,11 +290,11 @@ footer {
   }
 }
 
-.btn-menu{
+.btn-menu {
   display: none;
 }
 
-.btn-close-menu{
+.btn-close-menu {
   display: none;
 }
 
@@ -329,51 +331,56 @@ footer {
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
-    &:before {
-      position: absolute;
-      top: 8px;
-      left: 2px;
-      white-space: nowrap;
-    }
-    &:nth-last-child(1) {
-      justify-content: center;
-    }
     &:nth-of-type(1) {
       background-color: $nav-color;
     }
-    &:nth-of-type(1):before {
-      font-size: 0.8em;
-    }
-    &:nth-of-type(2):before {
-      content: "Début	";
-    }
-    &:nth-of-type(3):before {
-      content: "Fin";
-    }
-    &:nth-of-type(4):before {
-      content: "Places théoriques";
-    }
-    &:nth-of-type(5):before {
-      content: "Places réservées";
-    }
-    &:nth-of-type(6):before {
-      content: "Places restantes";
-    }
-    &:nth-of-type(7):before {
-      content: "Actions";
+  }
+
+  .home-sessions{
+    td {
+      &:before {
+        position: absolute;
+        top: 8px;
+        left: 2px;
+        white-space: nowrap;
+      }
+      &:nth-last-child(1) {
+        justify-content: center;
+      }
+      &:nth-of-type(1):before {
+        font-size: 0.8em;
+      }
+      &:nth-of-type(2):before {
+        content: "Début	";
+      }
+      &:nth-of-type(3):before {
+        content: "Fin";
+      }
+      &:nth-of-type(4):before {
+        content: "Places théoriques";
+      }
+      &:nth-of-type(5):before {
+        content: "Places réservées";
+      }
+      &:nth-of-type(6):before {
+        content: "Places restantes";
+      }
+      &:nth-of-type(7):before {
+        content: "Actions";
+      }
     }
   }
 }
 
 //TABLET
-@include media("<800px") {
-  line{
+@include media("<700px") {
+  line {
     stroke: $title-background-color;
     stroke-width: 3;
     stroke-linecap: round;
   }
 
-  .btn-menu{
+  .btn-menu {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -381,8 +388,8 @@ footer {
     z-index: 101;
     display: block;
   }
-  
-  .btn-close-menu{
+
+  .btn-close-menu {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -394,7 +401,7 @@ footer {
     .nav-right {
       display: none;
     }
-    .clicked{
+    .clicked {
       top: 0px;
       min-height: 100vh;
       width: 100vw;
@@ -407,16 +414,16 @@ footer {
       backdrop-filter: blur(7px);
       left: 0;
       font-size: 1.3em;
-        &>*{
-            margin: 16px 32px;
-            &:nth-child(1){
-              margin-top: 60px;
-            }
+      & > * {
+        margin: 16px 32px;
+        &:nth-child(1) {
+          margin-top: 60px;
         }
-        button{
-          width: fit-content;
-        }
-    }     
+      }
+      button {
+        width: fit-content;
+      }
+    }
   }
 }
 
@@ -429,17 +436,24 @@ footer {
   table {
     font-size: 0.9em;
     tbody {
-      tr.normal {
+      tr.normal,
+      tr.complete {
         td {
           &:nth-last-child(2) {
             font-size: 1.1em;
           }
         }
       }
-      tr.complete {
-        td {
-          &:nth-last-child(2) {
-            font-size: 1.1em;
+    }
+  }
+  @include media("<400px") {
+    table {
+      font-size: 0.9em;
+      tbody {
+        tr.normal,
+        tr.complete {
+          & > * {
+            text-align: end;
           }
         }
       }
