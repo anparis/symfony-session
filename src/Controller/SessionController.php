@@ -126,6 +126,12 @@ class SessionController extends AbstractController
     #[ParamConverter('module', options: ['mapping' => ['idMo' => 'id']])]
     public function addModule(Module $module,Session $session,ManagerRegistry $doctrine): Response
     {
+      $request = Request::createFromGlobals();
+      // $content = $request->getContent();
+      
+      // Traitement du formulaire
+      // isValid = filterInput
+      dd($request->request->get('nbJours'));
       if(isset($_POST['submit']))
       {
         $entityManager = $doctrine->getManager();
