@@ -9,7 +9,7 @@
 
     {% for user in users%}
     <ul>
-      <li>{{user.pseudo}} ({{user.email}}) <button class="danger"><a href="#">Delete</a></button></li>
+      <li>{{user.pseudo}} ({{user.email}}) <button class="danger"><a href="{{path('user_del', {'id': user.id})}}">Delete</a></button></li>
       {% set r = '' %}
       {% for role in user.roles%}
         <p>{{role}}</p>
@@ -18,7 +18,7 @@
         {% endif %}
       {% endfor %}
       {% if r == 'ROLE_ADMIN' %}
-        <button><a href="{{path('depromote_admin', {'id': user.id})}}">Cancel admin</a></button>
+        <button><a href="{{path('unpromote_admin', {'id': user.id})}}">Cancel admin</a></button>
       {% else %}
         <button><a href="{{path('promote_admin', {'id': user.id})}}">Promote admin</a></button>
       {% endif %}

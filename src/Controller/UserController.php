@@ -19,6 +19,17 @@ class UserController extends AbstractController
         ]);
     }
 
+    // DELETE USER
+    #[Route('/{id}/delete', name:'user_del')]
+    public function delete(User $user,ManagerRegistry $doctrine)
+    {
+      $user->setRoles(['ROLE_USER']);
+      $entityManager = $doctrine->getManager();
+      $entityManager->remove($user);
+      $entityManager->flush();
+      return $this->redirectToRoute('app_user');
+    }
+
     // ADMIN Promotion
     #[Route('/{id}/promote', name:'promote_admin')]
     public function promoteAdmin(User $user,ManagerRegistry $doctrine)
@@ -30,8 +41,8 @@ class UserController extends AbstractController
       return $this->redirectToRoute('app_user');
     }
 
-    // ADMIN Promotion
-    #[Route('/{id}/depromote', name:'depromote_admin')]
+    // ADMIN dePromotion
+    #[Route('/{id}/unpromote', name:'unpromote_admin')]
     public function unAdmin(User $user,ManagerRegistry $doctrine)
     {
       $user->setRoles(['ROLE_USER']);
@@ -40,4 +51,5 @@ class UserController extends AbstractController
       $entityManager->flush();
       return $this->redirectToRoute('app_session');
     }
+    
 }
