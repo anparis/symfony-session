@@ -10,6 +10,10 @@
   {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
   {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('scss/style.css') }}">
+  <script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
   {% endblock %}
 
   {% block javascripts %}
@@ -26,11 +30,21 @@
       </div>
       <div class="nav-right">
         <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
-        <a href="{{ path('app_user') }} ">Formateurs</a>
         <a href="{{ path('app_module') }} ">Modules</a>
         <a href="{{ path('app_categorie') }} ">Categories</a>
         <button class="danger"><a href="{{ path('app_logout') }}">Logout</a></button>
       </div>
+      <button class="btn-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(0deg);">
+            <line x1="4.8" y1="9.6" x2="27.2" y2="9.6" ></line>
+            <line x1="27.2" y1="22.4" x2="4.8" y2="22.4" ></line>
+        </svg>
+        </button>
+        <button class="btn-close-menu">   
+          <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(-45deg);">
+              <line x1="16" y1="0" x2="16" y2="32" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line>
+              <line x1="0" y1="16" x2="32" y2="16" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line></svg>
+      </button>
       {% else %}
       <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
       <button><a href="{{ path('app_register') }}">Inscription</a></button>
@@ -46,6 +60,8 @@
       <a href="#">Réglement</a>
     </footer>
   </div>
+
+  <script src="{{asset('javascript/index.js')}}"></script>
 </body>
 
 </html>

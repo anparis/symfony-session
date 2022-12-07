@@ -1,4 +1,5 @@
 @forward "globals/index";
+@import "./globals/include-media";
 
 $nav-color: hsla(274, 64%, 86%, 0.33);
 $title-background-color: hsl(280, 37%, 17%);
@@ -38,37 +39,46 @@ button {
   font-size: 1.3em;
 }
 
-table{
+table {
   width: 100%;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
   display: table;
   border-collapse: collapse;
   margin: 30px 0 50px 0;
   th,
-  td{
+  td {
     text-align: center;
     padding: 8px 15px;
   }
-  thead{
+  thead {
     background-color: $nav-color;
   }
-  tbody{
+  tbody {
     tr:nth-child(even) {
       background: $table-gray;
     }
-    td:nth-last-child(2){
-      color:$add-color;
-      font-size: 1.4em;
+    tr.normal {
+      td:nth-last-child(2) {
+        color: $add-color;
+        font-size: 1.4em;
+      }
     }
-    tr.complete{
+    tr.complete {
       border: 2px solid $danger-color;
-      td:first-child:before{
-        content: 'COMPLET ';
+      td:first-child:before {
+        content: "COMPLET ";
         color: $danger-color;
       }
-      td:nth-last-child(2){
-        color:$danger-color;
+      td:nth-last-child(2) {
+        color: $danger-color;
         font-size: 1.4em;
+      }
+    }
+    tr {
+      td:nth-last-child(1) {
+        display: flex;
+        gap: 10px;
+        width: 100%;
       }
     }
   }
@@ -79,22 +89,19 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
   height: 60px;
-  padding: 0 20px;
+  padding: 0 40px;
   box-shadow: 0px -2px 7px hsla(0, 0%, 0%, 0.25);
-  @include media('<phone'){
-    background-color: $add-color;
-  }
   .nav-right {
     display: flex;
-    gap: 30px;
+    > * {
+      margin-right: 10px;
+    }
   }
 }
 
 main {
   padding: 0 30px;
-
 }
 
 .title {
@@ -278,5 +285,164 @@ footer {
   color: white;
   &:hover {
     opacity: 0.6;
+  }
+}
+
+.btn-menu{
+  display: none;
+}
+
+.btn-close-menu{
+  display: none;
+}
+
+// MEDIA QUERIES
+
+//DESKTOP
+@include media("<desktop") {
+  // TABLE BEHAVIOUR
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  table {
+    box-shadow: none;
+    font-size: 1.2em;
+    tr {
+      margin: 20px 0;
+    }
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    &:before {
+      position: absolute;
+      top: 8px;
+      left: 2px;
+      white-space: nowrap;
+    }
+    &:nth-last-child(1) {
+      justify-content: center;
+    }
+    &:nth-of-type(1) {
+      background-color: $nav-color;
+    }
+    &:nth-of-type(1):before {
+      font-size: 0.8em;
+    }
+    &:nth-of-type(2):before {
+      content: "Début	";
+    }
+    &:nth-of-type(3):before {
+      content: "Fin";
+    }
+    &:nth-of-type(4):before {
+      content: "Places théoriques";
+    }
+    &:nth-of-type(5):before {
+      content: "Places réservées";
+    }
+    &:nth-of-type(6):before {
+      content: "Places restantes";
+    }
+    &:nth-of-type(7):before {
+      content: "Actions";
+    }
+  }
+}
+
+//TABLET
+@include media("<800px") {
+  line{
+    stroke: $title-background-color;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+
+  .btn-menu{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    z-index: 101;
+    display: block;
+  }
+  
+  .btn-close-menu{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    z-index: 101;
+  }
+
+  nav {
+    .nav-right {
+      display: none;
+    }
+    .clicked{
+      top: 0px;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      z-index: 100;
+      background: hsla(0, 0%, 100%, 0.945);
+      backdrop-filter: blur(7px);
+      left: 0;
+      font-size: 1.3em;
+        &>*{
+            margin: 16px 32px;
+            &:nth-child(1){
+              margin-top: 60px;
+            }
+        }
+        button{
+          width: fit-content;
+        }
+    }     
+  }
+}
+
+//PHONE
+@include media("<650px") {
+  header.title {
+    padding: 20px 10px;
+  }
+
+  table {
+    font-size: 0.9em;
+    tbody {
+      tr.normal {
+        td {
+          &:nth-last-child(2) {
+            font-size: 1.1em;
+          }
+        }
+      }
+      tr.complete {
+        td {
+          &:nth-last-child(2) {
+            font-size: 1.1em;
+          }
+        }
+      }
+    }
   }
 }
