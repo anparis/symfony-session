@@ -74,12 +74,15 @@ table {
         font-size: 1.4em;
       }
     }
-    tr {
-      td:nth-last-child(1) {
-        display: flex;
-        gap: 10px;
-        width: 100%;
-      }
+  }
+}
+
+.home-sessions {
+  tr {
+    td:nth-last-child(1) {
+      display: flex;
+      gap: 10px;
+      width: 100%;
     }
   }
 }
@@ -194,6 +197,7 @@ main {
   margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   .interns-details {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.19);
@@ -236,6 +240,9 @@ footer {
 
 #intern-btn {
   margin-top: 20px;
+  display:inline-block;
+  text-align: center;
+  color: $white;
 }
 
 .button-color {
@@ -331,12 +338,18 @@ footer {
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
+
     &:nth-of-type(1) {
       background-color: $nav-color;
     }
+    td {
+      button {
+        justify-content: center;
+      }
+    }
   }
 
-  .home-sessions{
+  .home-sessions {
     td {
       &:before {
         position: absolute;
@@ -446,6 +459,16 @@ footer {
       }
     }
   }
+
+  @include media("<600px") {
+    .interns-list{
+      .interns-details{
+        flex-direction: column;
+        flex: 0.7;
+      }
+    }
+  }
+
   @include media("<400px") {
     table {
       font-size: 0.9em;

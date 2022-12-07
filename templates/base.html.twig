@@ -27,8 +27,14 @@
       {% if app.user %}
       <div class="nav-left">
         <a href="{{ path('app_session') }}">G-sessions.DevCenter</a>
+        {% if is_granted('ROLE_ADMIN') %}
+          [ADMIN SESSION]
+        {% endif %}
       </div>
       <div class="nav-right">
+        {% if is_granted('ROLE_ADMIN') %}
+          <a href="{{ path('app_user') }} ">FORMATEURS</a>
+        {% endif %}
         <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
         <a href="{{ path('app_module') }} ">Modules</a>
         <a href="{{ path('app_categorie') }} ">Categories</a>

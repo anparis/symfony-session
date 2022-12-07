@@ -5,11 +5,24 @@
 {% block body %}
 <main>
 <div class="users">
-    <h1>Liste des Formateurs ✅</h1>
+    <h1>Liste des Formateurs</h1>
 
     {% for user in users%}
     <ul>
-      <li>{{user.pseudo}} ({{user.email}})</li>
+      <li>{{user.pseudo}} ({{user.email}}) <button class="danger"><a href="#">Delete</a></button></li>
+      {% set r = '' %}
+      {% for role in user.roles%}
+        <p>{{role}}</p>
+        {% if role == 'ROLE_ADMIN' %}
+          {% set r = role %}
+        {% endif %}
+      {% endfor %}
+      {% if r == 'ROLE_ADMIN' %}
+        <button><a href="{{path('depromote_admin', {'id': user.id})}}">Cancel admin</a></button>
+      {% else %}
+        <button><a href="{{path('promote_admin', {'id': user.id})}}">Promote admin</a></button>
+      {% endif %}
+
     </ul>
     {% endfor %}
 

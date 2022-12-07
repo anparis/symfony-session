@@ -18,4 +18,26 @@ class UserController extends AbstractController
             'users' => $users,
         ]);
     }
+
+    // ADMIN Promotion
+    #[Route('/{id}/promote', name:'promote_admin')]
+    public function promoteAdmin(User $user,ManagerRegistry $doctrine)
+    {
+      $user->setRoles(['ROLE_ADMIN']);
+      $entityManager = $doctrine->getManager();
+      $entityManager->persist($user);
+      $entityManager->flush();
+      return $this->redirectToRoute('app_user');
+    }
+
+    // ADMIN Promotion
+    #[Route('/{id}/depromote', name:'depromote_admin')]
+    public function unAdmin(User $user,ManagerRegistry $doctrine)
+    {
+      $user->setRoles(['ROLE_USER']);
+      $entityManager = $doctrine->getManager();
+      $entityManager->persist($user);
+      $entityManager->flush();
+      return $this->redirectToRoute('app_session');
+    }
 }
