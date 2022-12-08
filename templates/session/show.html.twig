@@ -17,16 +17,13 @@
     {% for programme in session.programmes | sort((a, b) => a.module.categorie.id <=> b.module.categorie.id) %}
         {% if programme.module.categorie.id == categorie%}
         <ul role="list" class="modules">
-          <button class="danger">
-            <a href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a>
-          </button>
+          <a class="danger btn" href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a>
           <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
         </ul>
         {% else %}
         <h4 class="categorie">{{programme.module.categorie}}</h4>
         <ul role="list" class="modules">
-          <button class="danger"><a
-              href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a></button>
+          <a class="danger btn" href="{{path('del_session_prog', {'idSe': session.id,'idPr': programme.id }) }}">-</a>
           <li>{{ programme.module }} : {{programme.nbJours}} jours</li>
         </ul>
         {% set categorie = programme.module.categorie.id %}
@@ -51,7 +48,7 @@
         <td>{{ module }}</td>
         <form method="POST" action="{{ path('add_session_module', {'idSe': session.id,'idMo': module.id }) }}">
           <td>Durée du module : <input type="number" min="1" id="nbJours" name="nbJours" size="2" /> jours</td>
-          <td><button type="submit" name="submit" class="add-btn">ajouter</button></td>
+          <td><button type="submit" name="submit" class="add-btn btn">ajouter</button></td>
         </form>
       </tr>
       {% endfor %}
@@ -69,8 +66,7 @@
       <h4>Stagiaires inscrits</h4>
       {% for stagiaire in session.stagiaires %}
       <ul role="list" class="modules">
-        <button class="danger "><a
-            href="{{path('del_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">-</a></button>
+        <a class="danger btn" href="{{path('del_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">-</a>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
       </ul>
       {% endfor %}
@@ -81,8 +77,7 @@
       <h4>Stagiaires non inscrits</h4>
       {% for stagiaire in nonRegistered %}
       <ul role="list" class="modules">
-        <button class="add-btn "><a
-            href="{{path('add_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">+</a></button>
+        <a class="add-btn btn" href="{{path('add_session_stagiaire', {'idSe': session.id, 'idSt': stagiaire.id} )}}">+</a>
         <li><a href="{{path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></li>
       </ul>
       {% endfor %}

@@ -36,13 +36,11 @@ a:hover {
   text-decoration: underline;
 }
 
-button {
+.btn {
   border: inherit;
   border-radius: 3px;
   background-color: hsl(274deg, 85%, 67%);
   cursor: pointer;
-}
-button a {
   color: hsl(0deg, 0%, 100%);
 }
 
@@ -87,10 +85,8 @@ table tbody tr.complete td:nth-last-child(2) {
   font-size: 1.4em;
 }
 
-.home-sessions tr td:nth-last-child(1) {
-  display: flex;
-  gap: 10px;
-  width: 100%;
+.home-sessions tr td:nth-last-child(1) a {
+  margin-right: 10px;
 }
 
 nav {
@@ -266,14 +262,9 @@ footer {
 }
 
 .add-btn {
-  color: hsl(0deg, 0%, 100%);
   background-color: hsla(119deg, 83%, 52%, 0.89);
   font-weight: 700;
   padding: 0 8px;
-}
-.add-btn a {
-  text-decoration: inherit;
-  color: hsl(0deg, 0%, 100%);
 }
 
 .danger {
@@ -281,17 +272,10 @@ footer {
   font-weight: 700;
   padding: 0 8px;
 }
-.danger a {
-  text-decoration: inherit;
-  color: hsl(0deg, 0%, 100%);
-}
 
 .edit {
-  background-color: white;
   font-weight: 700;
   padding: 0 8px;
-}
-.edit a {
   text-decoration: inherit;
   color: hsl(0deg, 0%, 100%);
 }

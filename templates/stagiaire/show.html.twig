@@ -10,7 +10,7 @@
       <article>
         <div class="edit-intern">
           <h4>{{stagiaire}}</h4>
-          <button class="edit big-btn"><a href="{{ path('edit_stagiaire', {'id': stagiaire.id} ) }}">✍</a></button>
+          <a class="big-btn" href="{{ path('edit_stagiaire', {'id': stagiaire.id} ) }}">✍</a>
         </div>
         <div class="intern-coordinates">
           <p>mail: {{stagiaire.email}}</p>

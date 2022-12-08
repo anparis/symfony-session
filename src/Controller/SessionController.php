@@ -124,21 +124,18 @@ class SessionController extends AbstractController
     #[Route('/session/{idSe}/{idMo}/addModule', name: 'add_session_module')]
     #[ParamConverter('session', options: ['mapping' => ['idSe' => 'id']])]
     #[ParamConverter('module', options: ['mapping' => ['idMo' => 'id']])]
-    public function addModule(Module $module,Session $session,ManagerRegistry $doctrine): Response
+    public function addModule(Module $module,Session $session,ManagerRegistry $doctrine,Request $request): Response
     {
-      $request = Request::createFromGlobals();
-      // $content = $request->getContent();
-      
       // Traitement du formulaire
-      // isValid = filterInput
-      dd($request->request->get('nbJours'));
-      if(isset($_POST['submit']))
+      // has = isset
+      $post = $request->request;
+      $nbJours = $post->filter('nbJours');
+      if($post->has('submit') && $nbJours)
       {
         $entityManager = $doctrine->getManager();
         $programme = new Programme();
-        $nb_jour = filter_input(INPUT_POST,'nbJours',FILTER_VALIDATE_INT);
 
-        $programme->setNbJours($nb_jour);
+        $programme->setNbJours($nbJours);
         $programme->setModule($module);
         $entityManager->persist($programme);
         $session->addProgramme($programme);

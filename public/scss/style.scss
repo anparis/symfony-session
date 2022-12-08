@@ -22,14 +22,12 @@ a {
   }
 }
 
-button {
+.btn {
   border: inherit;
   border-radius: 3px;
   background-color: $flashy-violet;
   cursor: pointer;
-  a {
-    color: $white;
-  }
+  color: $white;
 }
 
 .session-list h3 {
@@ -80,9 +78,9 @@ table {
 .home-sessions {
   tr {
     td:nth-last-child(1) {
-      display: flex;
-      gap: 10px;
-      width: 100%;
+      a{
+        margin-right: 10px;
+      }
     }
   }
 }
@@ -240,7 +238,7 @@ footer {
 
 #intern-btn {
   margin-top: 20px;
-  display:inline-block;
+  display: inline-block;
   text-align: center;
   color: $white;
 }
@@ -251,34 +249,22 @@ footer {
 }
 
 .add-btn {
-  color: $white;
   background-color: $add-color;
   font-weight: 700;
   padding: 0 8px;
-  a {
-    text-decoration: inherit;
-    color: $white;
-  }
 }
 
 .danger {
   background-color: $danger-color;
   font-weight: 700;
   padding: 0 8px;
-  a {
-    text-decoration: inherit;
-    color: $white;
-  }
 }
 
 .edit {
-  background-color: white;
   font-weight: 700;
   padding: 0 8px;
-  a {
-    text-decoration: inherit;
-    color: $white;
-  }
+  text-decoration: inherit;
+  color: $white;
 }
 
 .categorie {
@@ -461,8 +447,8 @@ footer {
   }
 
   @include media("<600px") {
-    .interns-list{
-      .interns-details{
+    .interns-list {
+      .interns-details {
         flex-direction: column;
         flex: 0.7;
       }
