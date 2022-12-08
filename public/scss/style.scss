@@ -22,14 +22,6 @@ a {
   }
 }
 
-.btn {
-  border: inherit;
-  border-radius: 3px;
-  background-color: $flashy-violet;
-  cursor: pointer;
-  color: $white;
-}
-
 .session-list h3 {
   display: flex;
   margin-top: 50px;
@@ -125,10 +117,17 @@ main {
   }
 }
 
-.modules-list {
+.modules-list, .categories {
   background-color: $module1-color;
   margin: 20px 0;
   padding: 10px;
+  .list-name{
+    font-size: 1.2em;
+    margin: 4px 0;
+  }
+  .edit-del{
+    margin: 10px 0 30px 0;
+  }
 }
 
 .modules {
@@ -234,6 +233,21 @@ main {
 
 footer {
   margin: 0 30px;
+  position: absolute;
+  bottom: 1;
+  a{
+    padding: 20px;
+  }
+}
+
+.btn {
+  border: inherit;
+  border-radius: 3px;
+  background-color: $flashy-violet;
+  cursor: pointer;
+  color: $white;
+  display: inline-block;
+  text-align: center;
 }
 
 #intern-btn {

@@ -3,16 +3,20 @@
 {% block title %}Categorie List{% endblock %}
 
 {% block body %}
+<header class="title">
+  <h2>Liste des Catégories</h2>
+</header>
 <main>
   <div class="categories">
-    <h1>Liste des Categorie ✅</h1>
-
-    <ul>
+    <ul role="list">
     {% for categorie in categories%}
-      <li>{{categorie.nom}}</li><a href="{{ path('edit_categorie', {'id':categorie.id}) }}">edit</a>/<a href="{{ path('del_categorie', {'id':categorie.id}) }}">supprimer</a>
+      <h4 class="categorie">{{categorie.nom}}</h4>
+      <div class="edit-del">
+        <a class="btn edit" href="{{ path('edit_categorie', {'id':categorie.id}) }}">edit</a> <a class="btn danger" href="{{ path('del_categorie', {'id':categorie.id}) }}">supprimer</a>
+      </div>
       {% endfor %}
     </ul>
-    <button><a href="{{path('add_categorie')}}">Ajouter</a></button>
   </div>
+  <a id="intern-btn" class="btn add-btn" href="{{path('add_categorie')}}">Ajouter</a>
 </main>
 {% endblock %}

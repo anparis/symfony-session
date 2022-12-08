@@ -36,14 +36,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.btn {
-  border: inherit;
-  border-radius: 3px;
-  background-color: hsl(274deg, 85%, 67%);
-  cursor: pointer;
-  color: hsl(0deg, 0%, 100%);
-}
-
 .session-list h3 {
   display: flex;
   margin-top: 50px;
@@ -129,10 +121,17 @@ main {
   margin-right: 1.1em;
 }
 
-.modules-list {
+.modules-list, .categories {
   background-color: hsl(34deg, 74%, 82%);
   margin: 20px 0;
   padding: 10px;
+}
+.modules-list .list-name, .categories .list-name {
+  font-size: 1.2em;
+  margin: 4px 0;
+}
+.modules-list .edit-del, .categories .edit-del {
+  margin: 10px 0 30px 0;
 }
 
 .modules {
@@ -247,6 +246,21 @@ main {
 
 footer {
   margin: 0 30px;
+  position: absolute;
+  bottom: 1;
+}
+footer a {
+  padding: 20px;
+}
+
+.btn {
+  border: inherit;
+  border-radius: 3px;
+  background-color: hsl(274deg, 85%, 67%);
+  cursor: pointer;
+  color: hsl(0deg, 0%, 100%);
+  display: inline-block;
+  text-align: center;
 }
 
 #intern-btn {

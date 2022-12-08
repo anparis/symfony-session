@@ -3,12 +3,14 @@
 {% block title %}List Users{% endblock %}
 
 {% block body %}
+<header class="title">
+  <h2>Liste des utilisateurs</h2>
+</header>
 <main>
 <div class="users">
-    <h1>Liste des Formateurs</h1>
 
     {% for user in users%}
-    <ul>
+    <ul role="list">
       <li>{{user.pseudo}} ({{user.email}}) <a class="btn danger" href="{{path('user_del', {'id': user.id})}}">Delete</a></li>
       {% set r = '' %}
       {% for role in user.roles%}
