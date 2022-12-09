@@ -30,6 +30,10 @@ ol[role=list] {
 
 .dark-body {
   background-color: hsl(212deg, 32%, 8%);
+  color: hsl(0deg, 0%, 100%);
+}
+.dark-body td a {
+  color: hsl(0deg, 0%, 100%);
 }
 
 .wrapper {
@@ -292,7 +296,7 @@ footer a {
   text-align: center;
 }
 
-.btn-dark-mode {
+.dark-theme {
   opacity: 0.7;
   position: relative;
   border-radius: 5px;
@@ -301,6 +305,10 @@ footer a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.light-theme {
+  display: none;
 }
 
 #intern-btn {

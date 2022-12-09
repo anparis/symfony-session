@@ -1,5 +1,12 @@
-$body-color: hsl(212, 32%, 8%);
+$white: hsl(0, 0%, 100%);
+$dark-background: hsl(212, 32%, 8%);
 
 .dark-body{
-  background-color: $body-color;
+  background-color: $dark-background;
+  color: $white;
+  td{
+    a{
+     color: $white;
+    }
+  }
 }

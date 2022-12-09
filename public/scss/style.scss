@@ -279,7 +279,7 @@ footer {
   text-align: center;
 }
 
-.btn-dark-mode{
+.dark-theme{
   opacity: 0.7;
   position: relative;
   border-radius: 5px;
@@ -290,6 +290,9 @@ footer {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
+}
+.light-theme{
+  display: none;
 }
 
 #intern-btn {

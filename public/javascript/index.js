@@ -12,8 +12,14 @@ $( ".btn-close-menu" ).click(function() {
 
 
 // DARK THEME
-$( ".btn-close-menu" ).click(function() {
-  $(".nav-right").removeClass('clicked');
-  $(".btn-close-menu").hide();
-  $(".btn-menu").show();
+$( ".dark-theme" ).click(function() {
+  $(".wrapper").addClass('dark-body');
+  $(".dark-theme").hide();
+  $(".light-theme").show();
+});
+
+$( ".light-theme" ).click(function() {
+  $(".wrapper").removeClass('dark-body');
+  $(".dark-theme").show();
+  $(".light-theme").hide();
 });
