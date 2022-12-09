@@ -28,6 +28,15 @@ ol[role=list] {
   list-style: none;
 }
 
+.dark-body {
+  background-color: hsl(212deg, 32%, 8%);
+}
+
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
 a {
   color: hsl(0deg, 0%, 0%);
   text-decoration: none;
@@ -93,10 +102,17 @@ nav {
 nav .nav-right {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   flex: 0.6;
 }
 nav .nav-right > * {
   margin-right: 10px;
+}
+nav .nav-left .nav-title {
+  color: hsl(274deg, 85%, 67%);
+}
+nav .admin {
+  color: hsl(0deg, 85%, 67%);
 }
 
 main {
@@ -119,6 +135,19 @@ main {
   background: hsl(274deg, 85%, 67%);
   content: "";
   margin-right: 1.1em;
+}
+
+.module-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.module-wrapper table {
+  flex: 1;
+}
+.module-wrapper .modules-list {
+  padding: 20px;
+  margin-right: 20px;
 }
 
 .modules-list, .categories {
@@ -245,12 +274,12 @@ main {
 }
 
 footer {
-  margin: 0 30px;
+  margin: 10px 30px;
   position: absolute;
-  bottom: 1;
+  bottom: 0;
 }
 footer a {
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .btn {
@@ -261,6 +290,17 @@ footer a {
   color: hsl(0deg, 0%, 100%);
   display: inline-block;
   text-align: center;
+}
+
+.btn-dark-mode {
+  opacity: 0.7;
+  position: relative;
+  border-radius: 5px;
+  width: 40px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #intern-btn {
@@ -351,6 +391,12 @@ tr {
   }
   td td button {
     justify-content: center;
+  }
+  .module-wrapper {
+    flex-direction: column;
+  }
+  .module-wrapper table {
+    margin-top: 0;
   }
   .home-sessions td:before {
     position: absolute;
@@ -453,6 +499,17 @@ table tbody tr.complete td:nth-last-child(2) {
   }
 }
 @media (max-width: 649px) and (max-width: 399px) {
+  nav {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  nav .btn-menu {
+    padding: 5px;
+  }
   table {
     font-size: 0.9em;
   }

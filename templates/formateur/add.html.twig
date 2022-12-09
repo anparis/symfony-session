@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire des Formateurs{% endblock %}
+
+{% block body %}
+<main>
+{% if edit %}
+<h1> Edit Formateur </h1>
+{%else%}
+<h1> Ajout Formateur </h1>
+{%endif%}
+
+{{ form_start(formFormateur) }}
+  {{ form_row(formFormateur.tel) }}
+  {{ form_row(formFormateur.email) }}
+  {{ form_row(formFormateur.date_naissance) }}
+  {{ form_row(formFormateur.ville) }}
+  {{ form_row(formFormateur.sexe) }}
+  {{ form_row(formFormateur.nom) }}
+  {{ form_row(formFormateur.prenom) }}
+  {{ form_row(formFormateur.modules) }}
+  {{ form_row(formFormateur.submit) }}
+{{ form_end(formFormateur) }}
+</main>
+{% endblock %}

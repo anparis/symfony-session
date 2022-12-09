@@ -9,3 +9,11 @@ $( ".btn-close-menu" ).click(function() {
   $(".btn-close-menu").hide();
   $(".btn-menu").show();
 });
+
+
+// DARK THEME
+$( ".btn-close-menu" ).click(function() {
+  $(".nav-right").removeClass('clicked');
+  $(".btn-close-menu").hide();
+  $(".btn-menu").show();
+});

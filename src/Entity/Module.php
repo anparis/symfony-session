@@ -25,9 +25,13 @@ class Module
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
+    #[ORM\ManyToMany(targetEntity: Formateur::class, mappedBy: 'modules')]
+    private Collection $formateurs;
+
     public function __construct()
     {
         $this->programmes = new ArrayCollection();
+        $this->formateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,5 +96,32 @@ class Module
     public function __toString()
     {
       return $this->nom;
+    }
+
+    /**
+     * @return Collection<int, Formateur>
+     */
+    public function getFormateurs(): Collection
+    {
+        return $this->formateurs;
+    }
+
+    public function addFormateur(Formateur $formateur): self
+    {
+        if (!$this->formateurs->contains($formateur)) {
+            $this->formateurs->add($formateur);
+            $formateur->addModule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormateur(Formateur $formateur): self
+    {
+        if ($this->formateurs->removeElement($formateur)) {
+            $formateur->removeModule($this);
+        }
+
+        return $this;
     }
 }

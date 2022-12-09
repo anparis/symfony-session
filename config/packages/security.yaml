@@ -37,6 +37,7 @@ security:
         - { path: ^/categorie, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/module, roles: ROLE_USER }
+        - { path: ^/formateur, roles: ROLE_USER }
 
 when@test:
     security:

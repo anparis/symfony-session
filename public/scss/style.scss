@@ -14,6 +14,11 @@ $module2-color: hsl(58, 65%, 82%);
 $module3-color: hsl(58, 75%, 49%);
 $table-gray: hsla(30, 12%, 90%, 0.38);
 
+.wrapper{
+  min-height: 100vh;
+  position: relative;
+}
+
 a {
   color: $dark;
   text-decoration: none;
@@ -88,10 +93,20 @@ nav {
   .nav-right {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     flex: 0.6;
     > * {
       margin-right: 10px;
     }
+  }
+  .nav-left{
+    .nav-title{
+      color: $flashy-violet;
+    }
+  }
+  .admin{
+    color: $danger-color;
+   
   }
 }
 
@@ -114,6 +129,20 @@ main {
       content: "";
       margin-right: 1.1em;
     }
+  }
+}
+
+.module-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  table{
+    // max-width: 900px;
+    flex: 1;
+  }
+  .modules-list{
+    padding: 20px;
+    margin-right: 20px;
   }
 }
 
@@ -232,11 +261,11 @@ main {
 }
 
 footer {
-  margin: 0 30px;
+  margin: 10px 30px;
   position: absolute;
-  bottom: 1;
+  bottom: 0;
   a{
-    padding: 20px;
+    padding: 0 20px;
   }
 }
 
@@ -248,6 +277,19 @@ footer {
   color: $white;
   display: inline-block;
   text-align: center;
+}
+
+.btn-dark-mode{
+  opacity: 0.7;
+  position: relative;
+  border-radius: 5px;
+  width: 40px;
+  height: 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 #intern-btn {
@@ -346,6 +388,13 @@ footer {
       button {
         justify-content: center;
       }
+    }
+  }
+
+  .module-wrapper{
+    flex-direction: column;
+    table{
+      margin-top: 0;
     }
   }
 
@@ -470,6 +519,15 @@ footer {
   }
 
   @include media("<400px") {
+    nav{
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      .btn-menu{
+        padding: 5px;
+      }
+    }
     table {
       font-size: 0.9em;
       tbody {

@@ -12,6 +12,7 @@
 <main>
   {% if session.programmes is not empty %}
 
+  <div class="module-wrapper">
   <div class="modules-list">
     {% set categorie = ''%}
     {% for programme in session.programmes | sort((a, b) => a.module.categorie.id <=> b.module.categorie.id) %}
@@ -55,7 +56,7 @@
     </tbody>
   </table>
   {% endif %}
-
+  </div>
   <div class="stagiaires-registered">
     {% for message in app.flashes('error') %}
     <div class="flash-notice">

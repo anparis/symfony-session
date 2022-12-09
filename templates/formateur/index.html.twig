@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormateurController!{% endblock %}
+
+{% block body %}
+<header>
+  <h2 class="title">Liste des formateurs</h2>
+</header>
+<main>
+  <div class="modules-list">
+    {% for formateur in formateurs%}
+      <h4>{{formateur}}</h4>
+      <a href="{{path('edit_formateur',{'id':formateur.id})}}">edit</a>
+      <a href="{{path('add_formateur',{'id':formateur.id})}}">add</a>
+      <ul role="list">
+      {% for module in formateur.modules %}
+        <li>{{module.nom}}</li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>  
+</main>
+{% endblock %}

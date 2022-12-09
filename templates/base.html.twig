@@ -10,13 +10,13 @@
   {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
   {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('scss/style.css') }}">
+  {% endblock %}
+
+  {% block javascripts %}
   <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
-  {% endblock %}
-
-  {% block javascripts %}
   {{ encore_entry_script_tags('app') }}
   {% endblock %}
 </head>
@@ -26,19 +26,31 @@
     <nav>
       {% if app.user %}
       <div class="nav-left">
-        <a href="{{ path('app_session') }}">G-sessions.DevCenter</a>
+        <a href="{{ path('app_session') }}">G-sessions.<span class="nav-title">DevCenter</span></a>
         {% if is_granted('ROLE_ADMIN') %}
-          [ADMIN SESSION]
+          <span class="admin">[ADMIN]</span>
         {% endif %}
       </div>
       <div class="nav-right">
         {% if is_granted('ROLE_ADMIN') %}
-          <a href="{{ path('app_user') }} ">FORMATEURS</a>
+          <a class="admin" href="{{ path('app_user') }} ">[Utilisateurs]</a>
         {% endif %}
         <a href="{{ path('app_stagiaire') }} ">Stagiaires</a>
         <a href="{{ path('app_module') }} ">Modules</a>
         <a href="{{ path('app_categorie') }} ">Categories</a>
+        <a href="{{ path('app_formateur') }} ">Formateurs</a>
         <a class="btn danger" href="{{ path('app_logout') }}">Logout</a>
+        <button class="btn-dark-mode btn"><svg width="18" height="18" viewBox="0 0 18 18" class="DarkModeToggle__MoonOrSun-sc-1ngd9fq-1 cwrIs" style="transform: rotate(90deg);">
+          <mask id="moon-mask-main-nav">
+            <rect x="0" y="0" width="18" height="18" fill="#FFF"></rect>
+            <circle cx="25" cy="0" r="8" fill="black"></circle>
+          </mask>
+          <circle cx="9" cy="9" fill="var(--color-text)" mask="url(#moon-mask-main-nav)" r="5"></circle>
+          <g><circle cx="17" cy="9" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle><circle cx="13" cy="15.928203230275509" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle>
+          <circle cx="5.000000000000002" cy="15.92820323027551" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle><circle cx="1" cy="9.000000000000002" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle><circle cx="4.9999999999999964" cy="2.071796769724492" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle><circle cx="13" cy="2.0717967697244912" r="1.5" fill="var(--color-text)" style="transform-origin: center center; transform: scale(1);"></circle>
+          </g>
+        </svg>
+      </button>
       </div>
       <button class="btn-menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(0deg);">
@@ -53,7 +65,7 @@
       </button>
       {% else %}
       <a href="{{ path('app_home') }}">G-sessions.DevCenter</a>
-      <button><a href="{{ path('app_register') }}">Inscription</a></button>
+      <a class="btn edit" href="{{ path('app_register') }}">Inscription</a>
       {% endif %}
     </nav>
     {% block body %}
