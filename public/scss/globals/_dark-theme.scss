@@ -1,12 +1,26 @@
-$white: hsl(0, 0%, 100%);
-$dark-background: hsl(212, 32%, 8%);
+@media (prefers-color-scheme: dark) {
+  $nav-color: hsla(274, 55%, 66%, 0.33);
+  $title-background-color: hsl(280, 37%, 17%);
+  $flashy-violet: hsl(274, 85%, 67%);
+  $white: hsl(0, 0%, 100%);
+  $dark: hsl(0, 6%, 10%);
+  $danger-color: hsl(0, 85%, 67%);
+  $category-color: hsl(275, 30%, 46%);
+  $add-color: hsla(119, 83%, 52%, 0.89);
+  $module1-color: hsl(232, 34%, 31%);
+  $module2-color: hsl(58, 65%, 82%);
+  $module3-color: hsl(58, 75%, 49%);
+  $table-gray: hsla(30, 12%, 90%, 0.38);
 
-.dark-body{
-  background-color: $dark-background;
-  color: $white;
-  td{
-    a{
-     color: $white;
+  .dark{
+    background: $dark;
+
+    .toggleButton{
+      cursor: pointer;
+      width: 30px;
+      background: none;
+      border: none;
     }
   }
-}
+} 
+

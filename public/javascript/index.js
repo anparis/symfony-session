@@ -9,17 +9,3 @@ $( ".btn-close-menu" ).click(function() {
   $(".btn-close-menu").hide();
   $(".btn-menu").show();
 });
-
-
-// DARK THEME
-$( ".dark-theme" ).click(function() {
-  $(".wrapper").addClass('dark-body');
-  $(".dark-theme").hide();
-  $(".light-theme").show();
-});
-
-$( ".light-theme" ).click(function() {
-  $(".wrapper").removeClass('dark-body');
-  $(".dark-theme").show();
-  $(".light-theme").hide();
-});

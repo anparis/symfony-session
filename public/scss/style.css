@@ -28,14 +28,17 @@ ol[role=list] {
   list-style: none;
 }
 
-.dark-body {
-  background-color: hsl(212deg, 32%, 8%);
-  color: hsl(0deg, 0%, 100%);
+@media (prefers-color-scheme: dark) {
+  .dark {
+    background: hsl(0deg, 6%, 10%);
+  }
+  .dark .toggleButton {
+    cursor: pointer;
+    width: 30px;
+    background: none;
+    border: none;
+  }
 }
-.dark-body td a {
-  color: hsl(0deg, 0%, 100%);
-}
-
 .wrapper {
   min-height: 100vh;
   position: relative;
@@ -47,6 +50,20 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+.light .toggleButton {
+  cursor: pointer;
+  width: 30px;
+  background: none;
+  border: none;
+}
+.light .toggleButton svg.dark-mode {
+  display: flex;
+  fill: aqua;
+}
+.light .toggleButton .light-mode {
+  display: none;
 }
 
 .session-list h3 {
@@ -296,21 +313,6 @@ footer a {
   text-align: center;
 }
 
-.dark-theme {
-  opacity: 0.7;
-  position: relative;
-  border-radius: 5px;
-  width: 40px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.light-theme {
-  display: none;
-}
-
 #intern-btn {
   margin-top: 20px;
   display: inline-block;
@@ -436,8 +438,6 @@ tr {
   .home-sessions td:nth-of-type(7):before {
     content: "Actions";
   }
-}
-@media (max-width: 699px) {
   line {
     stroke: hsl(280deg, 37%, 17%);
     stroke-width: 3;
