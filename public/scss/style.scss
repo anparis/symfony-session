@@ -37,31 +37,34 @@ a {
 //   cursor: pointer;
 // }
 
-.light{
-  .toggleButton{
-    cursor: pointer;
-    width: 30px;
-    background: none;
-    border: none;
-    svg.dark-mode{
-      display: flex;
-      fill:aqua;
-    }
-    .light-mode{
-      display: none;
-    }
-  }
+// .light{
+//   .toggleButton{
+//     cursor: pointer;
+//     width: 30px;
+//     background: none;
+//     border: none;
+//     svg.dark-mode{
+//       display: flex;
+//       fill:aqua;
+//     }
+//     .light-mode{
+//       display: none;
+//     }
+//   }
+// }
+
+#hide{ 
+  display: none;
 }
 
 .session-list h3 {
   display: flex;
-  margin-top: 50px;
+  margin-top: 40px;
   color: $category-color;
   font-size: 1.3em;
 }
 
 table {
-  width: 100%;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
   display: table;
   border-collapse: collapse;
@@ -145,6 +148,7 @@ main {
   color: $flashy-violet;
   width: 100%;
   padding: 20px 120px;
+  margin-bottom: 30px;
   .date {
     color: $white;
     &::before {
@@ -246,7 +250,7 @@ main {
 
 // INTERNS LIST
 .interns-list {
-  margin: 50px 0;
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -386,6 +390,10 @@ footer {
     tr {
       margin: 20px 0;
     }
+  }
+
+  #hide{
+    display: block;
   }
 
   td {

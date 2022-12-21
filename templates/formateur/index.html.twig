@@ -3,21 +3,40 @@
 {% block title %}Hello FormateurController!{% endblock %}
 
 {% block body %}
-<header>
-  <h2 class="title">Liste des formateurs</h2>
+
+<header class="title">
+  <h2>Liste des Formateurs</h2>
 </header>
 <main>
-  <div class="modules-list">
-    {% for formateur in formateurs%}
-      <h4>{{formateur}}</h4>
-      <a href="{{path('edit_formateur',{'id':formateur.id})}}">edit</a>
-      <a href="{{path('add_formateur',{'id':formateur.id})}}">add</a>
-      <ul role="list">
-      {% for module in formateur.modules %}
-        <li>{{module.nom}}</li>
-      {% endfor %}
-      </ul>
+  <a id="intern-btn" class="add-btn btn" href="{{ path('add_formateur') }}">+ Ajouter un formateur</a>
+  <div class="interns-list">
+    {% for formateur in formateurs %}
+    <div class="interns-details">
+      <article>
+        <a href="{{path('show_formateur', {'id': formateur.id})}}">
+          <h4>{{formateur}}</h4>
+        </a>
+        <a href="{{path('edit_formateur', {'id': formateur.id})}}">edit</a>
+        <a href="{{path('del_formateur', {'id': formateur.id})}}">supprimer</a>
+        <p>mail: {{formateur.email}}</p>
+        <p>tel: {{formateur.tel}}</p>
+        <p>ville: {{formateur.ville}}</p>
+        <p>date de naissance: {{formateur.datenaissance | date('d/m/Y')}}</p>
+        <p>sexe: {{formateur.sexe}}</p>
+      </article>
+
+      <div class="sessions-list">
+        {% for module in formateur.modules %}
+        <div class="session">
+        <article>
+          <h4 class="module-name">{{ module.nom }} </h4>
+        </article>
+        </a>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
     {% endfor %}
-  </div>  
+  </div>
 </main>
 {% endblock %}

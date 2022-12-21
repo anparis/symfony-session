@@ -11,7 +11,7 @@
 </header>
 <main>
   {% if session.programmes is not empty %}
-
+  <h3>Modules programmés</h3>
   <div class="module-wrapper">
   <div class="modules-list">
     {% set categorie = ''%}
@@ -35,12 +35,13 @@
   <p>La session ne possède pas de modules.</p>
   {% endif %}
   {% if nonProgrammes is not empty %}
+  <h3 id="hide">Programmer des modules dans la session</h3>
   <table class="table-dark table-striped">
     <thead>
       <tr>
         <th>Module</th>
         <th>Durée</th>
-        <th>Programmer</th>
+        <th>Programmer dans la session</th>
       </tr>
     </thead>
     <tbody>

@@ -7,6 +7,7 @@
   <h2>Liste des Modules</h2>
 </header>
 <main>
+  <a id="intern-btn" class="add-btn btn" href="{{path('add_module')}}">+ Ajouter</a>
   <div class="modules-list">
 
     {% for categorie in categories%}
@@ -17,6 +18,9 @@
       {% if(categorie.id == module.categorie.id ) %}
       <div class="edit-del">
       <li class="list-name">{{module.nom}}</li>
+        {% for formateur in module.formateurs %}
+        <p>Formateurs sur le module : {{formateur}}</p>
+        {% endfor %}
         <a class="edit btn" href="{{ path('edit_module', {'id':module.id}) }}">edit</a> <a class="danger btn" href="{{ path('del_module', {'id':module.id}) }}">supprimer</a>
       </div>
       {% endif %}
@@ -25,7 +29,6 @@
     {% endif %}
     {% endfor %}
     </div>
-    <a id="intern-btn" class="add-btn btn" href="{{path('add_module')}}">Ajouter</a>
 
 </main>
 {% endblock %}

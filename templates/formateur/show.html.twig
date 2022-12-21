@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail du formateur{% endblock %}
+
+{% block body %}
+<main>
+  <div class="intern">
+    <article>
+      <div class="intern-details">
+        <article>
+          <div class="edit-intern">
+            <h4>{{formateur}}</h4>
+            <a class="big-btn" href="{{ path('edit_formateur', {'id': formateur.id} ) }}">✍</a>
+          </div>
+          <div class="intern-coordinates">
+            <p>mail: {{formateur.email}}</p>
+            <p>tel: {{formateur.tel}}</p>
+            <p>ville: {{formateur.ville}}</p>
+            <p>date de naissance: {{formateur.datenaissance | date('d/m/Y')}}</p>
+            <p>sexe: {{formateur.sexe}}</p>
+          </div>
+        </article>
+
+        {% if formateur.modules is not empty %}
+        <div class="sessions-list">
+          <h3>Modules enseignés :</h3>
+          {% for module in formateur.modules %}
+            <h4 class="module-name">{{ module.nom }} </h4>
+          {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+  </article>
+  </div>
+</main>
+{% endblock %}

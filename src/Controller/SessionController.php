@@ -23,7 +23,6 @@ class SessionController extends AbstractController
     #[Route('/session', name: 'app_session')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        // $sessions = $doctrine->getRepository(Session::class)->findAll();
 
         $sessionsPast = $doctrine->getRepository(Session::class)->sessionsPast();
         $sessionsCurrent = $doctrine->getRepository(Session::class)->sessionsCurrent();

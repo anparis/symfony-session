@@ -52,29 +52,18 @@ a:hover {
   text-decoration: underline;
 }
 
-.light .toggleButton {
-  cursor: pointer;
-  width: 30px;
-  background: none;
-  border: none;
-}
-.light .toggleButton svg.dark-mode {
-  display: flex;
-  fill: aqua;
-}
-.light .toggleButton .light-mode {
+#hide {
   display: none;
 }
 
 .session-list h3 {
   display: flex;
-  margin-top: 50px;
+  margin-top: 40px;
   color: hsl(275deg, 30%, 46%);
   font-size: 1.3em;
 }
 
 table {
-  width: 100%;
   box-shadow: 0 1px 3px hsla(0deg, 0%, 0%, 0.2);
   display: table;
   border-collapse: collapse;
@@ -145,6 +134,7 @@ main {
   color: hsl(274deg, 85%, 67%);
   width: 100%;
   padding: 20px 120px;
+  margin-bottom: 30px;
 }
 .title .date {
   color: hsl(0deg, 0%, 100%);
@@ -250,7 +240,7 @@ main {
 }
 
 .interns-list {
-  margin: 50px 0;
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -388,6 +378,9 @@ tr {
   }
   table tr {
     margin: 20px 0;
+  }
+  #hide {
+    display: block;
   }
   td {
     /* Behave  like a "row" */

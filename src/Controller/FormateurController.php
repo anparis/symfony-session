@@ -30,6 +30,7 @@ class FormateurController extends AbstractController
         {
           $formateur = new Formateur();
         }
+
         $form = $this->createForm(FormateurType::class, $formateur);
         $form->handleRequest($request);
         
@@ -63,5 +64,14 @@ class FormateurController extends AbstractController
       $entityManager->flush();
 
       return $this->redirectToRoute('app_formateur');
+    }
+
+    #[Route('/formateur/{id}/show', name: 'show_formateur')]
+    public function showFormateur(Formateur $formateur)
+    {
+      return $this->render('formateur/show.html.twig', [
+        'formateur' => $formateur,
+        // 'sessions' => $sessions
+      ]);
     }
 }

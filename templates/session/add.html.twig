@@ -3,6 +3,7 @@
 {% block title %}Formulaire des Sessions{% endblock %}
 
 {% block body %}
+<main>
 {% if edit %}
 <h1> Edit Session </h1>
 {%else%}
@@ -19,4 +20,5 @@
   {{ form_row(formSession.date_debut) }}
   {{ form_row(formSession.date_fin) }}
 {{ form_end(formSession) }}
+</main>
 {% endblock %}
